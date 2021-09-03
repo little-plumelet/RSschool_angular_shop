@@ -17,9 +17,7 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-typescript/base",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "airbnb-typescript/base"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -37,7 +35,16 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
+        "no-console": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/extensions": "off"
       }
     },
     {

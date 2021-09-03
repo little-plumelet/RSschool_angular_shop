@@ -1,0 +1,71 @@
+<div class="header-information-block">
+  <!-- <button
+    mat-button
+    [matMenuTriggerFor]="menuPlace"
+    (placeName)="placeName"
+  >
+    {{ placeName }}
+    <mat-icon>place</mat-icon>
+  </button>
+
+  <mat-menu #menuPlace="matMenu">
+    <button mat-menu-item (click)="changePlaceName('Санкт Петербург')">Санкт Петербург</button>
+    <button mat-menu-item (click)="changePlaceName('Москва')">Москва</button>
+  </mat-menu> -->
+
+  <mat-form-field class="city">
+    <mat-label>город</mat-label>
+    <mat-select [(value)]="selectedCity">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let city of cities" [value]="city">
+        {{ city }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="contacts">
+    <button mat-button onclick="location.href='https://www.viber.com/ru/'">
+      <mat-icon>call</mat-icon>
+      Viber
+    </button>
+    <button mat-button>
+      <mat-icon>call</mat-icon>
+      {{ contacts.mainPhoneNumber }}
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuContacts">
+      Другие контакты
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #menuContacts="matMenu">
+      <button mat-menu-item>
+        <mat-icon>call</mat-icon>
+        {{contacts.secondPhoneNumber}}
+      </button>
+      <button mat-menu-item onclick="location.href='https://telegram.org/'">
+        <mat-icon>near_me</mat-icon>
+        Telegram
+      </button>
+      <button mat-menu-item>
+        <mat-icon>mail</mat-icon>
+        <a class="mail" href="mailto:test@mail.ru">
+          Почта
+        </a>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>phone_in_talk</mat-icon>
+        Заказать звонок
+      </button>
+      <button mat-menu-item>
+        <mat-icon>sms</mat-icon>
+        Написать нам
+      </button>
+    </mat-menu>
+  </div>
+  <div class="work-time">
+    <img class="work-time-img" src="../../../../../assets/icons/wall-clock.svg" alt="">
+    <div class="schedule">
+      <span>Контакт центр</span>
+      <span>с 8:00 до 22:00</span>
+    </div>
+  </div>
+</div>
