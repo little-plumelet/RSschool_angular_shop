@@ -1,0 +1,36 @@
+<div class="cover">
+  <form class="form-login">
+    <span class="form-login-title">ВХОД</span>
+    <label class="form-login-label" for="login">Электронная почта:</label>
+    <input
+      matInput
+      id="login"
+      name="name"
+      class="login-input"
+      type="text"
+      placeholder="Your name"
+      required
+      [(ngModel)]="name"
+    >
+    <label class="form-login-label" for="password">Пароль:</label>
+    <input
+      matInput
+      id="password"
+      name="Password"
+      class="password-input"
+      type="password"
+      placeholder="Password"
+      required
+      [(ngModel)]="password"
+    >
+    <button
+      class="login-btn"
+      mat-raised-button
+      color="primary"
+      (click)="onLogin()"
+
+    >
+    Войти
+  </button>
+  </form>
+</div>

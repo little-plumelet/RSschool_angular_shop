@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="header-nav-main">
+    <img src="../../../../../assets/icons/logo.svg" alt="logo" class="logo">
+    <button mat-button class="catalog">
+      <mat-icon>view_module</mat-icon>
+      Каталог товаров
+    </button>
+    <mat-form-field class="form-field" appearance="fill">
+      <button matPrefix mat-icon-button (click)="searchInput=''">
+        <mat-icon>search</mat-icon>
+      </button>
+      <mat-label >Найти</mat-label>
+      <input matInput type="text" [(ngModel)]="searchInput">
+      <button *ngIf="searchInput" matSuffix mat-icon-button (click)="searchInput=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="user-profile-block-container">
+      <button
+      mat-button
+      (click)="userProfileBlockToggle()"
+      >
+        <mat-icon>login</mat-icon>
+        Аккаунт
+      </button>
+      <app-user-profile class="user-profile-block"></app-user-profile>
+    </div>
+    <button mat-button>
+      <mat-icon>shopping_cart</mat-icon>
+      Корзина
+    </button>
+  </div>
+</div>

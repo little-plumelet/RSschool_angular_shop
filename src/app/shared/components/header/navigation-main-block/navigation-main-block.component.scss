@@ -1,0 +1,40 @@
+.header-nav-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  min-width: 50px;
+  margin-right: 5px;
+}
+
+.form-field {
+  flex-grow: 2;
+  height: 50px;
+  border-radius: 5px;
+  border: solid 1px var(--primaryGreenColor);
+  margin-right: 5px;
+}
+.catalog {
+  margin-right: 5px;
+}
+
+.matInput {
+  align-items: center;
+}
+.user-profile-block-container {
+  margin-right: 5px;
+  position: relative;
+}
+.mat-button {
+  height: 50px;
+  border: solid 1px var(--primaryGreenColor);
+}
+
+.user-profile-block {
+  position: absolute;
+  z-index: 1000;
+  top: 105%;
+  left: -30%;
+}

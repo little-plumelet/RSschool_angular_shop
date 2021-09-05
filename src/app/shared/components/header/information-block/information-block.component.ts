@@ -23,6 +23,5 @@ export class InformationBlockComponent {
 
   changePlaceName(placeName: string){
     this.placeName = placeName;
-    console.log(this.placeName);
   }
 }

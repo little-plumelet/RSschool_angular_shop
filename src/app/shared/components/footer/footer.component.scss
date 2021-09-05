@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contacts-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--primaryGreenColor);
+  border-top: 1px solid var(--primaryGreenColor);
+}
+.mail {
+  text-decoration: none;
+  color: black;
+ }
+
+.network-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.network-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.odnoklassniki-icon {
+  background-image: url("../../../../assets/icons/odnoklassniki.svg");
+}
+.odnoklassniki-icon:hover {
+  background-image: url("../../../../assets/icons/odnoklassniki_round.svg");
+}
+.vkontakte-icon {
+  background-image: url("../../../../assets/icons/vk.svg");
+}
+.vkontakte-icon:hover {
+  background-image: url("../../../../assets/icons/vk_round.svg");
+}
+.instagram-icon {
+  background-image: url("../../../../assets/icons/instagram.svg");
+}
+.instagram-icon:hover {
+  background-image: url("../../../../assets/icons/instagram_round.svg");
+}
+.facebook-icon {
+  background-image: url("../../../../assets/icons/facebook.svg");
+}
+.facebook-icon:hover {
+  background-image: url("../../../../assets/icons/facebook_round.svg");
+}
+.youtube-icon {
+  background-image: url("../../../../assets/icons/youtube.svg");
+}
+.youtube-icon:hover {
+  background-image: url("../../../../assets/icons/youtube_round.svg");
+}
+
