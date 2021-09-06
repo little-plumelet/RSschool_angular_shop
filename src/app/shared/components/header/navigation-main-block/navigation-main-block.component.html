@@ -20,14 +20,20 @@
       mat-button
       (click)="userProfileBlockToggle()"
       >
-        <mat-icon>login</mat-icon>
+        <mat-icon *ngIf="token$ | async; else notLoggedIcon">perm_identity</mat-icon>
+        <ng-template #notLoggedIcon>
+          <mat-icon>login</mat-icon>
+        </ng-template>
         Аккаунт
       </button>
-      <app-user-profile class="user-profile-block"></app-user-profile>
     </div>
     <button mat-button>
       <mat-icon>shopping_cart</mat-icon>
       Корзина
     </button>
   </div>
+  <app-user-profile-logged *ngIf="token$ | async; else notLoggedBlock" class="user-profile-block"></app-user-profile-logged>
+      <ng-template #notLoggedBlock>
+        <app-user-profile-not-logged  class="user-profile-block"></app-user-profile-not-logged>
+      </ng-template>
 </div>

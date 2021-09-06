@@ -6,7 +6,6 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { NavigationMainBlockComponent } from './components/header//navigation-main-block/navigation-main-block.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserProfileComponent } from '../auth/components/user-profile/user-profile.component';
 import { AuthModule } from '../auth/auth.module';
 
 
@@ -17,7 +16,6 @@ import { AuthModule } from '../auth/auth.module';
     InformationBlockComponent,
     NavigationMainBlockComponent,
     FooterComponent,
-    UserProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ import { AuthModule } from '../auth/auth.module';
     MaterialModule,
     HeaderComponent,
     FooterComponent,
-    UserProfileComponent,
   ],
 })
 export class SharedModule { }

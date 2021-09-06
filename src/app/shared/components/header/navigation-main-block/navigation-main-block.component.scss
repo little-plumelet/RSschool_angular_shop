@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .mat-button {
+    height: 50px;
+    min-width: var(--minWidthBaseButton);
+    border: solid 1px var(--primaryGreenColor);
+  }
 }
 
 .logo {
@@ -29,12 +35,13 @@
 }
 .mat-button {
   height: 50px;
+  min-width: var(--minWidthBaseButton);
   border: solid 1px var(--primaryGreenColor);
 }
 
 .user-profile-block {
   position: absolute;
   z-index: 1000;
-  top: 105%;
-  left: -30%;
+  top: 0;
+  left: 0;
 }

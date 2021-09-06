@@ -13,7 +13,7 @@ import { IContacts } from 'src/app/shared/models/contacts';
 })
 export class InformationBlockComponent {
 
-  placeName = 'Москва';
+  placeName = 'Москва'; //TODO заменить на работу с API
 
   contacts: IContacts = CONTACTS;
 

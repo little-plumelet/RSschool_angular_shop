@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
-import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { UserProfileNotLoggedComponent } from './components/user-profile-not-logged/user-profile-not-logged.component';
+import { UserProfileLoggedComponent } from './components/user-profile-logged/user-profile-logged.component';
 
 @NgModule({
   declarations: [
     LoginFormComponent,
-    RegistrationFormComponent,
+    UserProfileNotLoggedComponent,
+    UserProfileLoggedComponent,
   ],
   imports: [
     CommonModule,
@@ -17,6 +19,8 @@ import { RegistrationFormComponent } from './components/registration-form/regist
   ],
   exports: [
     LoginFormComponent,
+    UserProfileNotLoggedComponent,
+    UserProfileLoggedComponent,
   ],
 })
 export class AuthModule { }

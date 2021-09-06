@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { UserProfileBlockToggleService } from 'src/app/shared/services/user-profile-block-toggle.service';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthentificationService } from 'src/app/auth/services/authentification.service';
+import { UserAuthToggleService } from 'src/app/shared/services/user-auth-toggle.service';
 
 @Component({
   selector: 'app-navigation-main-block',
@@ -8,25 +9,21 @@ import { UserProfileBlockToggleService } from 'src/app/shared/services/user-prof
   styleUrls: ['./navigation-main-block.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationMainBlockComponent implements OnInit, OnDestroy {
+export class NavigationMainBlockComponent implements OnInit {
   searchInput = '';
 
-  showHideProfileBlock = false;
+  token$ = new Observable();
 
-  subscription = new Subscription();
-
-  constructor(private userProfileBlockToggleService: UserProfileBlockToggleService) {}
+  constructor(
+    private userAuthToggleService: UserAuthToggleService,
+    private authentificationService: AuthentificationService,
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.userProfileBlockToggleService.showHideProfileBlock.subscribe();
+    this.token$ = this.authentificationService.token$;
   }
 
   userProfileBlockToggle() {
-    this.showHideProfileBlock = this.userProfileBlockToggleService.showHideProfileBlock.getValue();
-    this.userProfileBlockToggleService.showHideProfileBlock.next(!this.showHideProfileBlock);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userAuthToggleService.userProfileBlockToggle();
   }
 }

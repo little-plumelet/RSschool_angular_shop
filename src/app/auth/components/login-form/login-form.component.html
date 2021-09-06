@@ -1,36 +1,60 @@
-<div class="cover">
+<div
+*ngIf="showHideLoginForm$ | async"
+class="cover"
+(click)="userLoginFormToggle($event)">
   <form class="form-login">
-    <span class="form-login-title">ВХОД</span>
+    <div class="form-login-header">
+      <span class="form-login-title">ВХОД</span>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="userLoginFormToggle($event)"
+        >
+          <mat-icon class="clear">clear</mat-icon>
+      </button>
+    </div>
     <label class="form-login-label" for="login">Электронная почта:</label>
     <input
       matInput
       id="login"
-      name="name"
+      name="email"
       class="login-input"
-      type="text"
-      placeholder="Your name"
+      type="email"
       required
-      [(ngModel)]="name"
+      [(ngModel)]="email"
     >
     <label class="form-login-label" for="password">Пароль:</label>
     <input
       matInput
       id="password"
-      name="Password"
+      name="password"
       class="password-input"
       type="password"
-      placeholder="Password"
       required
       [(ngModel)]="password"
     >
     <button
-      class="login-btn"
+      class="login-btn clear"
       mat-raised-button
       color="primary"
-      (click)="onLogin()"
-
+      (click)="onSubmit()"
+      (click)="userLoginFormToggle($event)"
     >
-    Войти
+      Войти
   </button>
+  <!-- <a
+    href="#"
+    class="clear"
+    (click)="userLoginFormToggle($event)"
+  >
+    Не помню пароль
+  </a>
+  <a
+    href="#"
+    class="registration-link clear"
+    (click)="userLoginFormToggle($event)"
+  >
+    Регистрация
+  </a> -->
   </form>
 </div>
