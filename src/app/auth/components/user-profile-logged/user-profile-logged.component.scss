@@ -11,7 +11,7 @@
 }
 .user-profile-container  {
   position: relative;
-  top: 180px;
+  top: 150px;
   left: calc(100vw - 10vw - 2 * var(--minWidthBaseButton) - (var(--userProfileContainerWidth) / 2 - var(--minWidthBaseButton) / 2));
   display: flex;
   flex-direction: column;

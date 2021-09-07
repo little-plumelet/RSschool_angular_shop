@@ -1,3 +1,4 @@
+import { AppState } from 'src/app/redux/app-state.model';
 import { IContacts } from '../models/contacts';
 
 export const CONTACTS: IContacts = {
@@ -13,3 +14,12 @@ export const CITIES = [
   'Волгоград',
   'Сочи',
 ];
+
+export const INITIAL_STATE: AppState = {
+  categoriesState: {
+    categories: [],
+    loading: false,
+    loaded: false,
+    error: null,
+  }
+}
