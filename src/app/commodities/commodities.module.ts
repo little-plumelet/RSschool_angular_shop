@@ -8,8 +8,6 @@ import { categoriesReducer } from '../redux/reducers/categories-reducer';
 import { SubcategoriesListComponent } from './components/subcategories-list/subcategories-list.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
-
-
 @NgModule({
   declarations: [
     CatalogPageComponent,

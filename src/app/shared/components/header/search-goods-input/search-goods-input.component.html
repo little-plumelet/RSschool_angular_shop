@@ -1,5 +1,5 @@
 <mat-form-field class="form-field" appearance="fill">
-  <button matPrefix mat-icon-button (click)="searchInput=''">
+  <button matPrefix mat-icon-button class="search-btn">
     <mat-icon>search</mat-icon>
   </button>
   <mat-label >Найти</mat-label>
@@ -13,3 +13,4 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
+<app-shop-item-list *ngIf="searchInput.length"></app-shop-item-list>

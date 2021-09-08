@@ -13,6 +13,7 @@ import { categoriesReducer } from '../redux/reducers/categories-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from '../redux/effects/categories-effects';
 import { SearchGoodsInputComponent } from './components/header/search-goods-input/search-goods-input.component';
+import { ShopItemListComponent } from './components/shop-item-list/shop-item-list.component';
 
 
 
@@ -24,6 +25,7 @@ import { SearchGoodsInputComponent } from './components/header/search-goods-inpu
     FooterComponent,
     NavigationCategoriesBlockComponent,
     SearchGoodsInputComponent,
+    ShopItemListComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { SearchGoodsInputComponent } from './components/header/search-goods-inpu
     MaterialModule,
     HeaderComponent,
     FooterComponent,
+    ShopItemListComponent,
   ],
 })
 export class SharedModule { }

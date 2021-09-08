@@ -30,6 +30,8 @@
 app-search-goods-input {
   flex-grow: 2;
   margin-right: 5px;
+  position: relative;
+  z-index: 1000;
 }
 .user-profile-block-container {
   margin-right: 5px;

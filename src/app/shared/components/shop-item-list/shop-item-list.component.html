@@ -1,0 +1,16 @@
+<div
+  *ngIf="shopItemList$ | async"
+  class="shop-items-list-container-block cover">
+  <ul class="shop-items-list">
+    <li
+      *ngFor="let shopItem of shopItemList$ | async"
+      class="shop-item"
+      >
+      <a
+        href="#"
+      >
+        {{ shopItem.name }}
+      </a>
+    </li>
+  </ul>
+</div>
