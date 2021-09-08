@@ -11,8 +11,6 @@ import { UserAuthToggleService } from 'src/app/shared/services/user-auth-toggle.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationMainBlockComponent implements OnInit {
-  searchInput = '';
-
   token$ = new Observable();
 
   goToCatalogFlag = true;
@@ -44,4 +42,5 @@ export class NavigationMainBlockComponent implements OnInit {
     }
     this.goToCatalogFlag = !this.goToCatalogFlag;
   }
+
 }

@@ -5,16 +5,7 @@
       <mat-icon>view_module</mat-icon>
       <span>Каталог товаров</span>
     </button>
-    <mat-form-field class="form-field" appearance="fill">
-      <button matPrefix mat-icon-button (click)="searchInput=''">
-        <mat-icon>search</mat-icon>
-      </button>
-      <mat-label >Найти</mat-label>
-      <input matInput type="text" [(ngModel)]="searchInput">
-      <button *ngIf="searchInput" matSuffix mat-icon-button (click)="searchInput=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+      <app-search-goods-input></app-search-goods-input>
     <div class="user-profile-block-container">
       <button
       mat-button

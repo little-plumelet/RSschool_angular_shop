@@ -17,6 +17,10 @@ export const CITIES = [
 
 export const BASE_URL = 'http://localhost:3004';
 
+export const DEBOUNCE_TIME = 1000;
+
+export const INPUT_VALUE_MIN_LENGTH = 2;
+
 export const INITIAL_STATE: AppState = {
   categoriesState: {
     categories: [],

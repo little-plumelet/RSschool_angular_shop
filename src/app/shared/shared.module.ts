@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { categoriesReducer } from '../redux/reducers/categories-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from '../redux/effects/categories-effects';
+import { SearchGoodsInputComponent } from './components/header/search-goods-input/search-goods-input.component';
 
 
 
@@ -22,6 +23,7 @@ import { CategoriesEffects } from '../redux/effects/categories-effects';
     NavigationMainBlockComponent,
     FooterComponent,
     NavigationCategoriesBlockComponent,
+    SearchGoodsInputComponent,
   ],
   imports: [
     CommonModule,

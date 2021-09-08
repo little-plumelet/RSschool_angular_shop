@@ -24,18 +24,12 @@
 .logo:hover {
   cursor: pointer;
 }
-.form-field {
-  flex-grow: 2;
-  height: 50px;
-  border-radius: 5px;
-  border: solid 1px var(--primaryGreenColor);
-  margin-right: 5px;
-}
 .catalog {
   margin-right: 5px;
 }
-.matInput {
-  align-items: center;
+app-search-goods-input {
+  flex-grow: 2;
+  margin-right: 5px;
 }
 .user-profile-block-container {
   margin-right: 5px;
