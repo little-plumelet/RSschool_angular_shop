@@ -13,9 +13,12 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
     return result;
   }),
   on(categoriesActions.getCategoriesSuccessful, (state, { categories }) => {
+    const subCategories = categories[0].subCategories;
     const result = {
       ...state,
       categories,
+      chosenCategoryName: categories[0].name,
+      chosenSubcategory: subCategories,
       loading: false,
       loaded: true,
     };
@@ -25,6 +28,15 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
     const result = {
       ...state,
       loading: true,
+    };
+    return result;
+  }),
+  on(categoriesActions.chageChosenCategoryName, (state, { chosenCategoryName }) => {
+    const subcategories = state.categories.find((category) => category.name === chosenCategoryName)?.subCategories;
+    const result = {
+      ...state,
+      chosenCategoryName: chosenCategoryName,
+      chosenSubcategory: subcategories ?  subcategories : state.chosenSubcategory,
     };
     return result;
   }));

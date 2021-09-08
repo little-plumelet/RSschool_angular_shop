@@ -14,3 +14,8 @@ export const getCategoriesFailed = createAction(
   '[CATEGORIES EFFECT] FETCHED CATEGORIES FAILED',
   props<{ error: Error }>(),
 );
+
+export const chageChosenCategoryName = createAction(
+  '[MAIN PAGE] CHANGE CHOSEN_CATEGOR_NAME',
+  props<{ chosenCategoryName: string }>(),
+);

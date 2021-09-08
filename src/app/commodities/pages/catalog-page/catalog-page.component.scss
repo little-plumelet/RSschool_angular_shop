@@ -1,0 +1,13 @@
+.catalog-wrapper {
+  height: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.vertical-border {
+  width: 0;
+  align-self: stretch;
+  border-right: 3px solid var(--primaryPurpleColor);
+}

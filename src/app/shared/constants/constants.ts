@@ -15,11 +15,15 @@ export const CITIES = [
   'Сочи',
 ];
 
+export const BASE_URL = 'http://localhost:3004';
+
 export const INITIAL_STATE: AppState = {
   categoriesState: {
     categories: [],
+    chosenCategoryName: '',
+    chosenSubcategory: [],
     loading: false,
     loaded: false,
     error: null,
-  }
-}
+  },
+};

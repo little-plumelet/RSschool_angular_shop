@@ -1,0 +1,14 @@
+<div class="header-nav-categories-container">
+  <div class="wrapper">
+    <ul class="header-nav-categories">
+      <li
+        *ngFor="let category of categories$ | async"
+        class="header-nav-categories_item"
+      >
+        <a href="#">{{ category.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

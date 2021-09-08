@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="header-nav-main">
-    <img src="../../../../../assets/icons/logo.svg" alt="logo" class="logo">
-    <button mat-button class="catalog">
+    <img src="../../../../../assets/icons/logo.svg" alt="logo" class="logo" (click)="goToHome()">
+    <button mat-button class="catalog" (click)="goToCatalog()">
       <mat-icon>view_module</mat-icon>
-      Каталог товаров
+      <span>Каталог товаров</span>
     </button>
     <mat-form-field class="form-field" appearance="fill">
       <button matPrefix mat-icon-button (click)="searchInput=''">
@@ -24,12 +24,12 @@
         <ng-template #notLoggedIcon>
           <mat-icon>login</mat-icon>
         </ng-template>
-        Аккаунт
+        <span>Аккаунт</span>
       </button>
     </div>
     <button mat-button>
       <mat-icon>shopping_cart</mat-icon>
-      Корзина
+      <span>Корзина</span>
     </button>
   </div>
   <app-user-profile-logged *ngIf="token$ | async; else notLoggedBlock" class="user-profile-block"></app-user-profile-logged>

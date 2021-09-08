@@ -1,0 +1,16 @@
+<div class="categories-container-block">
+  <ul class="categories">
+    <li
+      *ngFor="let category of categories$ | async"
+      class="categories_item"
+      [class.selected]="(selectedCategoryName$ | async) === category.name"
+      >
+      <a
+        href="#"
+        (mouseenter)="changeChosenCategoryName($event)"
+      >
+        {{ category.name }}
+      </a>
+    </li>
+  </ul>
+</div>

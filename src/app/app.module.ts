@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { CommoditiesModule } from './commodities/commodities.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,13 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     SharedModule,
+    AppRoutingModule,
     AuthModule,
+    CommoditiesModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
+    EffectsModule.forRoot(),
     StoreModule.forRoot({}, {
       runtimeChecks: {
         strictActionImmutability: true,
