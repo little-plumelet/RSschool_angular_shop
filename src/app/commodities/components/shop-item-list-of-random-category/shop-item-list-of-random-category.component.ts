@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { startWith, switchMap, tap } from 'rxjs/operators';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
 import { ShopItemListForHomePageService } from '../../services/shop-item-list-for-home-page.service';

@@ -9,6 +9,8 @@ import { SubcategoriesListComponent } from './components/subcategories-list/subc
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ShopItemListOfRandomCategoryComponent } from './components/shop-item-list-of-random-category/shop-item-list-of-random-category.component';
 import { SwiperModule } from 'swiper/angular';
+import { ShopItemsOfSubcategoryPageComponent } from './pages/shop-items-of-subcategory-page/shop-items-of-subcategory-page.component';
+import { ShopItemCardComponent } from './components/shop-item-card/shop-item-card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { SwiperModule } from 'swiper/angular';
     SubcategoriesListComponent,
     HomePageComponent,
     ShopItemListOfRandomCategoryComponent,
+    ShopItemsOfSubcategoryPageComponent,
+    ShopItemCardComponent,
   ],
   imports: [
     CommonModule,
