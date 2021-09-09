@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     MatSelectModule,
     MatDividerModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
@@ -26,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatSelectModule,
     MatDividerModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule { }

@@ -35,15 +35,12 @@ export class SearchGoodsInputComponent implements OnInit, OnDestroy {
   setSearchQueryValue() {
     if (this.searchInput.length > INPUT_VALUE_MIN_LENGTH) {
       this.searchInput$.next(this.searchInput);
-      console.log('this.searchInput', this.searchInput);
     }
   }
 
   getGoods(searchQuery: string) {
-    console.log('searchQuery =', searchQuery);
     this.subscriptions.push(
       this.httpRequestService.getGoods(searchQuery).subscribe((shopItemList) => {
-        console.log('shopItemList', shopItemList);
         this.shopItemListSearchService.shopItemList$.next(shopItemList);
       }),
     );

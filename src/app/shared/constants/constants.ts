@@ -31,3 +31,42 @@ export const INITIAL_STATE: AppState = {
     error: null,
   },
 };
+
+export const HOME_PAGE_GOODS = [
+  {
+    categoryId: 'appliances',
+    subcategoryId: 'refrigerators',
+  },
+  {
+    categoryId: 'appliances',
+    subcategoryId: 'washing-machines',
+  },
+  {
+    categoryId: 'electronics',
+    subcategoryId: 'mobile',
+  },
+  {
+    categoryId: 'electronics',
+    subcategoryId: 'ebooks',
+  },
+  {
+    categoryId: 'electronics',
+    subcategoryId: 'tvs',
+  },
+  {
+    categoryId: 'computers-peripherals',
+    subcategoryId: 'laptops',
+  },
+  {
+    categoryId: 'computers-peripherals',
+    subcategoryId: 'consoles',
+  },
+  {
+    categoryId: 'hobbies',
+    subcategoryId: 'music-instruments',
+  },
+  {
+    categoryId: 'hobbies',
+    subcategoryId: 'fun-and-rest',
+  },
+];
