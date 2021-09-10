@@ -1,45 +1,40 @@
-<div class="wrapper home-page-wrapper">
-  <div class="shop-slider">
-        <ul class="home-shop-item-list shop-slider__wrp swiper-wrapper">
-          <li
-            *ngFor="let homeShopItem of shopItemListRandom$ | async"
-            class="shop-slider__item swiper-slide home-shop-item"
+
+<swiper class="mySwiper"
+  [slidesPerView]="1"
+  [navigation]="{ prevEl: '.swiper-navigation-prev', nextEl: '.swiper-navigation-next' }"
+  [zoom]="true"
+  [autoplay]="true"
+  [pagination]="{ clickable: true }"
+>
+  <ng-template class="swiperSlide" swiperSlide class="swipeSSS" *ngFor="let slide of shopItemListRandom$ | async; index as i" let-data>
+    <div  class="swiperSlide">
+      <div class="slider-content">
+        <div class="shop-slider__img">
+          <img src="{{ slide.imageUrls[0] }}" alt="{{ slide.name }}">
+        </div>
+        <div class="shop-slider__content">
+          <div class="shop-slider__rate">
+            <div *ngFor="let star of [].constructor(slide.rating)">
+              <mat-icon color="primary">star_rate</mat-icon>
+            </div>
+          </div>
+          <p class="shop-slider__title">
+            {{ slide.name }}
+          </p>
+          <p class="shop-slider__text">
+            {{ slide.description }}
+          </p>
+          <button
+            class="more-btn shop-slider__button"
+            mat-raised-button
+            color="primary"
           >
-            <div class="shop-slider__img">
-              <img src="{{ homeShopItem.imageUrls[0] }}" alt="">
-            </div>
-            <div class="shop-slider__content">
-              <span class="shop-slider__rate">
-                Рейтинг: {{ homeShopItem.rating }}
-                <mat-icon>star_rate</mat-icon>
-              </span>
-              <p class="shop-slider__title">
-                {{ homeShopItem.name }}
-              </p>
-              <p class="shop-slider__text">
-                {{ homeShopItem.description }}
-              </p>
-              <button
-                class="more-btn shop-slider__button"
-                mat-raised-button
-                color="primary"
-              >
-                Подробнее
-              </button>
-            </div>
-          </li>
-        </ul>
-  </div>
-  <button
-    class="swiper-navigation-prev"
-    (click)="setPosition($event)"
-  >
-    <div class="arrow-left"></div>
-  </button>
-  <button
-    class="swiper-navigation-next"
-    (click)="setPosition($event)"
-  >
-    <div class="arrow-right"></div>
-  </button>
-</div>
+            Подробнее
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</swiper>
+<button type="button" class="swiper-navigation-prev"></button>
+<button type="button" class="swiper-navigation-next"></button>
