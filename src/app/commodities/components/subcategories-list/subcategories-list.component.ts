@@ -16,14 +16,14 @@ export class SubcategoriesListComponent {
 
   chosenCategory$: Observable<ISubcategory[]> = new Observable();
 
+  chosenCategoryId$: Observable<string> = new Observable();;
+
   constructor(
     private store:Store<AppState>,
   ) {
     this.chosenCategory$ = this.store.select(selectSubcategories);
     this.chosenCategoryName$ = this.store.select((state) => state.categoriesState.chosenCategoryName);
+    this.chosenCategoryId$ = this.store.select((state) => state.categoriesState.categories.filter(
+      (category) => category.name === state.categoriesState.chosenCategoryName)[0].id);
   }
-
-  // ngOnInit() {
-  //   this.chosenCategory$ = this.store.select(selectSubcategories);
-  // }
 }

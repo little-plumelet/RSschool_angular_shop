@@ -1,16 +1,25 @@
-<mat-card *ngIf="shopItem" class="shop-item-card">
+<mat-card class="shop-item-card" *ngIf="shopItem" class="shop-item-card">
+  <div class="shop-item-card__rating">
+    <div   *ngFor="let star of [].constructor(shopItem.rating)">
+      <mat-icon color="accent" class="star__icon">star_rate</mat-icon>
+    </div>
+  </div>
   <img mat-card-image [src]="shopItem.imageUrls[0]" alt="{{ shopItem.name }}">
-  <mat-card-content>
-    <mat-card-title>{{ shopItem.name }}</mat-card-title>
-    <p *ngIf="shopItem.availableAmount; else notAvailable">В наличии</p>
+  <mat-card-content class="shop-item-card__content">
+    <mat-card-title class="shop-item-card__title">{{ shopItem.name }}</mat-card-title>
+    <p class="shop-item-card__availability" *ngIf="shopItem.availableAmount; else notAvailable">
+      <mat-icon color="accent" class="availability__icon">done</mat-icon>
+      <span>В наличии</span>
+    </p>
     <ng-template #notAvailable>Нет в наличии</ng-template>
-    <p>{{ shopItem.price }} руб</p>
+    <p class="shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} руб</p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="shop-item-card__actions">
     <!-- [routerLink]="['/main', item.id] -->
-    <button mat-stroked-button>
-      More...
+    <button mat-stroked-button class="shop-item-card__btn">
+      В корзину
     </button>
+    <a href="#" class="shop-item-card__link">Добавить в избранное</a>
   </mat-card-actions>
   <mat-card-footer class="card-footer">
   </mat-card-footer>

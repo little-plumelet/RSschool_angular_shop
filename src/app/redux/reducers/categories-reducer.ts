@@ -18,7 +18,7 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
       ...state,
       categories,
       chosenCategoryName: categories[0].name,
-      chosenSubcategory: subCategories,
+      subcategoriesOfChosenCategory: subCategories,
       loading: false,
       loaded: true,
     };
@@ -31,12 +31,12 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
     };
     return result;
   }),
-  on(categoriesActions.chageChosenCategoryName, (state, { chosenCategoryName }) => {
+  on(categoriesActions.changeChosenCategoryName, (state, { chosenCategoryName }) => {
     const subcategories = state.categories.find((category) => category.name === chosenCategoryName)?.subCategories;
     const result = {
       ...state,
       chosenCategoryName: chosenCategoryName,
-      chosenSubcategory: subcategories ?  subcategories : state.chosenSubcategory,
+      subcategoriesOfChosenCategory: subcategories ?  subcategories : state.subcategoriesOfChosenCategory,
     };
     return result;
   }));

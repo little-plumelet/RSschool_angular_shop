@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="shop-item-list__title-block">
+    <a class="shop-item-list__chosenCategoryName" href="#">{{ chosenCategoryName$ | async }}</a>
+    <mat-icon class="shop-item-list__icon">chevron_right</mat-icon>
+    <a class="shop-item-list__chosenSubCategoryName" href="#">{{ chosenSubCategoryName$ | async }}</a>
+  </div>
+  <div class="wrapper shop-item-list-wrapper">
+    <app-shop-item-card *ngFor="let shopItem of shopItemList$ | async"
+      [shopItem]="shopItem">
+    </app-shop-item-card>
+  </div>
+</div>
+

@@ -25,7 +25,7 @@ export const INITIAL_STATE: AppState = {
   categoriesState: {
     categories: [],
     chosenCategoryName: '',
-    chosenSubcategory: [],
+    subcategoriesOfChosenCategory: [],
     loading: false,
     loaded: false,
     error: null,

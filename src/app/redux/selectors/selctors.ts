@@ -5,5 +5,5 @@ export const selectCategoriesState = createFeatureSelector<AppState, ICategories
 
 export const selectSubcategories = createSelector(
   selectCategoriesState,
-  (categoriesState) => categoriesState.chosenSubcategory,
+  (categoriesState) => categoriesState.subcategoriesOfChosenCategory,
 );

@@ -4,7 +4,7 @@ import { ISubcategory } from '../shared/models/subcategory';
 export interface ICategoriesState {
   categories: ICategory[];
   chosenCategoryName: string;
-  chosenSubcategory: ISubcategory[];
+  subcategoriesOfChosenCategory: ISubcategory[];
   loading: boolean;
   loaded: boolean;
   error: Error | null;

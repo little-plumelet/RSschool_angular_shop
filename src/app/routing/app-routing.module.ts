@@ -8,7 +8,7 @@ import { ShopItemsOfSubcategoryPageComponent } from '../commodities/pages/shop-i
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'catalog', component: CatalogPageComponent },
-  { path: 'category/goods', component: ShopItemsOfSubcategoryPageComponent },
+  { path: 'catalog/:categoryId/:subcategoryId', component: ShopItemsOfSubcategoryPageComponent },
 ];
 
 @NgModule({

@@ -167,10 +167,11 @@
 }
 
 .swiper {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 500px;
+  height: 600px;
 }
 .swiperSlide {
   flex-shrink: 0;

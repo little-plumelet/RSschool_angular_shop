@@ -1,0 +1,25 @@
+.shop-item-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.shop-item-list {
+  &__title-block {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__chosenCategoryName,
+  &__chosenSubCategoryName {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+  }
+
+  &__icon {
+    margin-right: 20px;
+  }
+}

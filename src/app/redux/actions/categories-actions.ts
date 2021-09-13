@@ -15,7 +15,7 @@ export const getCategoriesFailed = createAction(
   props<{ error: Error }>(),
 );
 
-export const chageChosenCategoryName = createAction(
-  '[MAIN PAGE] CHANGE CHOSEN_CATEGOR_NAME',
+export const changeChosenCategoryName = createAction(
+  '[MAIN PAGE] CHANGE CHOSEN_CATEGORY_NAME',
   props<{ chosenCategoryName: string }>(),
 );

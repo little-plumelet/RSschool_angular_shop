@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { chageChosenCategoryName } from 'src/app/redux/actions/categories-actions';
+import { changeChosenCategoryName } from 'src/app/redux/actions/categories-actions';
 import { AppState } from 'src/app/redux/app-state.model';
 import { ICategory } from 'src/app/shared/models/category';
 
@@ -25,7 +25,7 @@ export class CategoriesListComponent {
 
   changeChosenCategoryName(event: Event) {
     const target = event.target as HTMLElement;
-    this.store.dispatch(chageChosenCategoryName({ chosenCategoryName: target.innerText }));
+    this.store.dispatch(changeChosenCategoryName({ chosenCategoryName: target.innerText }));
   }
 
 }

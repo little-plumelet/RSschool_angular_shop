@@ -5,7 +5,7 @@
       *ngFor="let subCategory of chosenCategory$ | async"
       class="subcategories_item"
     >
-      <a href="#">{{ subCategory.name }}</a>
+      <a [routerLink]="['/catalog', chosenCategoryId$ | async, subCategory.id]">{{ subCategory.name }}</a>
     </li>
   </ul>
 </div>
