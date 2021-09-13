@@ -25,14 +25,19 @@ export class HttpRequestsService {
 
   getGoodsOfSubcategory(categoryId: string, subCategoryId: string) {
     const result = this.http.get<IShopItem[]>(`${BASE_URL}/goods/category/${categoryId}/${subCategoryId}`);
-    console.log('result', result);
     return result;
   }
 
   getHomePageGoods() {
     const index = getRandomIntInclusive(0, HOME_PAGE_GOODS.length - 1);
     return this.http.get<IShopItem[]>(
-      `${BASE_URL}/goods/category/${HOME_PAGE_GOODS[index].categoryId}/${HOME_PAGE_GOODS[index].subcategoryId}`,
+      `${BASE_URL}/goods/item/${HOME_PAGE_GOODS[index].categoryId}/${HOME_PAGE_GOODS[index].subcategoryId}`,
+    );
+  }
+
+  getShopItemById(id: string) {
+    return this.http.get<IShopItem>(
+      `${BASE_URL}/goods/item/${id}`,
     );
   }
 }

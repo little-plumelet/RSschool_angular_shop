@@ -1,0 +1,132 @@
+
+.detailed-shop-item-card {
+  background-color: white;
+
+  &__content {
+    display: flex;
+
+    .main-content {
+      width: 55%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slider {
+      width: 45%;
+    }
+  }
+
+  &__title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+
+    .path {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      a {
+        text-decoration: none;
+        font-size: 14px;
+        color: black;
+      }
+
+      .mat-icon {
+        color: black;
+      }
+    }
+  }
+
+  &__title {
+    color: black;
+    margin-bottom: 20px;
+    .title {
+      border-bottom: 1px solid var(--primaryGreenColor);
+    }
+  }
+
+  &__popular {
+    margin-left: 20px;
+    padding-bottom: 20px;
+    font-size: 36px;
+    align-self: flex-start;
+  }
+
+  &__rating {
+    display: flex;
+    margin-bottom: 30px;
+
+    .star__icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+  }
+
+  &__price {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__availability {
+    display: flex;
+    align-items: center;
+    color: black;
+
+    .availability__icon {
+      margin-right: 10px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  &__btn {
+    width: 50%;
+    margin-top: 20px;
+    align-self: flex-end;
+    background-color: var(--primaryGreenColor);
+  }
+
+  &__link {
+    width: 50%;
+    align-self: flex-end;
+    margin-top: 30px;
+    text-decoration: none;
+    line-height: 140%;
+    color: black;
+    text-align: center;
+    border-bottom: 1px solid var(--primaryGreenColor);
+  }
+
+  &__description-container {
+    padding: 50px;
+  }
+
+  &__description-title {
+    font-weight: bold;
+    color: black;
+  }
+
+  &__description {
+    color: black;
+  }
+
+  &__img {
+    width: 90%;
+    height: 30vh;
+    object-fit: contain
+
+  }
+}

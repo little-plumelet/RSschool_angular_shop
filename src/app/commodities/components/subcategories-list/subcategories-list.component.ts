@@ -16,7 +16,7 @@ export class SubcategoriesListComponent {
 
   chosenCategory$: Observable<ISubcategory[]> = new Observable();
 
-  chosenCategoryId$: Observable<string> = new Observable();;
+  chosenCategoryId$: Observable<string> = new Observable();
 
   constructor(
     private store:Store<AppState>,

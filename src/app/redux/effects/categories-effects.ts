@@ -19,7 +19,6 @@ export class CategoriesEffects {
     ofType(getCategories),
     switchMap(() => this.httpRequestService.getCategories().pipe(
       map((categories) => {
-        console.log('categories = ', categories);
         return getCategoriesSuccessful({ categories });
       }),
       catchError((error) => of(getCategoriesFailed({ error }))),

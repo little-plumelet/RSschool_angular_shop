@@ -6,7 +6,10 @@
   </div>
   <img mat-card-image [src]="shopItem.imageUrls[0]" alt="{{ shopItem.name }}">
   <mat-card-content class="shop-item-card__content">
-    <mat-card-title class="shop-item-card__title">{{ shopItem.name }}</mat-card-title>
+    <mat-card-title class="shop-item-card__title">
+      {{ shopItem.name }}
+      <a [routerLink]="['/catalog', chosenCategoryId, chosenSubCategoryId, chosenItemId]">{{ shopItem.name }}</a>
+    </mat-card-title>
     <p class="shop-item-card__availability" *ngIf="shopItem.availableAmount; else notAvailable">
       <mat-icon color="accent" class="availability__icon">done</mat-icon>
       <span>В наличии</span>

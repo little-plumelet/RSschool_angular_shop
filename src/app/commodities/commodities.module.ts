@@ -13,6 +13,7 @@ import { ShopItemsOfSubcategoryPageComponent } from './pages/shop-items-of-subca
 import { ShopItemCardComponent } from './components/shop-item-card/shop-item-card.component';
 import { RouterModule } from '@angular/router';
 import { ShopItemListOfSubcategoryComponent } from './components/shop-item-list-of-subcategory/shop-item-list-of-subcategory.component';
+import { ShopItemCardDetailedComponent } from './components/shop-item-card-detailed/shop-item-card-detailed.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ShopItemListOfSubcategoryComponent } from './components/shop-item-list-
     ShopItemsOfSubcategoryPageComponent,
     ShopItemCardComponent,
     ShopItemListOfSubcategoryComponent,
+    ShopItemCardDetailedComponent,
   ],
   imports: [
     CommonModule,
