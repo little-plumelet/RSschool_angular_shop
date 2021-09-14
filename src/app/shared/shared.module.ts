@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from '../redux/effects/categories-effects';
 import { SearchGoodsInputComponent } from './components/header/search-goods-input/search-goods-input.component';
 import { ShopItemListComponent } from './components/shop-item-list/shop-item-list.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -34,6 +35,7 @@ import { ShopItemListComponent } from './components/shop-item-list/shop-item-lis
     AuthModule,
     StoreModule.forFeature('categoriesState', categoriesReducer),
     EffectsModule.forFeature([CategoriesEffects]),
+    RouterModule,
   ],
   exports: [
     CommonModule,

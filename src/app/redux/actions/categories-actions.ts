@@ -19,3 +19,8 @@ export const changeChosenCategoryName = createAction(
   '[MAIN PAGE] CHANGE CHOSEN_CATEGORY_NAME',
   props<{ chosenCategoryName: string }>(),
 );
+
+export const changeInCatalog = createAction(
+  '[MAIN PAGE] CHANGE IN_CATALOG',
+  props<{ inCatalog: boolean }>(),
+);

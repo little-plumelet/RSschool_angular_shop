@@ -17,5 +17,10 @@
       color: white;
       text-decoration: none;
     }
+
+    a:hover {
+      cursor: pointer;
+      border-bottom: 1px solid white;
+    }
   }
 }

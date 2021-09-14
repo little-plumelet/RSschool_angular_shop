@@ -36,7 +36,7 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
       this.chosenSubCategoryName$ = this.store.select((state) => {
         return state.categoriesState.subcategoriesOfChosenCategory.filter(
           (subcategory) => subcategory.id === params.subcategoryId,
-        )[0].name;
+        )[0]?.name;
       });
     }));
 

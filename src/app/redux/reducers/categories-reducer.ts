@@ -17,7 +17,7 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
     const result = {
       ...state,
       categories,
-      chosenCategoryName: categories[0].name,
+      chosenCategoryName: state.chosenCategoryName ? state.chosenCategoryName : categories[0].name,
       subcategoriesOfChosenCategory: subCategories,
       loading: false,
       loaded: true,
@@ -36,7 +36,14 @@ export const categoriesReducer = createReducer(INITIAL_STATE.categoriesState,
     const result = {
       ...state,
       chosenCategoryName: chosenCategoryName,
-      subcategoriesOfChosenCategory: subcategories ?  subcategories : state.subcategoriesOfChosenCategory,
+      subcategoriesOfChosenCategory: subcategories ? subcategories : state.subcategoriesOfChosenCategory,
+    };
+    return result;
+  }),
+  on(categoriesActions.changeInCatalog, (state, { inCatalog }) => {
+    const result = {
+      ...state,
+      inCatalog: inCatalog,
     };
     return result;
   }));

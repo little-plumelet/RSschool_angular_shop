@@ -2,10 +2,10 @@
   <div class="wrapper">
     <ul class="header-nav-categories">
       <li
-        *ngFor="let category of categories$ | async"
+        *ngFor="let subCategory of subCategories$ | async"
         class="header-nav-categories_item"
       >
-        <a href="#">{{ category.name }}</a>
+        <a (click)="onClick($event)">{{ subCategory.name }}</a>
       </li>
     </ul>
   </div>

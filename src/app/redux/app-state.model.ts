@@ -5,6 +5,7 @@ export interface ICategoriesState {
   categories: ICategory[];
   chosenCategoryName: string;
   subcategoriesOfChosenCategory: ISubcategory[];
+  inCatalog: boolean;
   loading: boolean;
   loaded: boolean;
   error: Error | null;

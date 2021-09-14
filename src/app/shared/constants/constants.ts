@@ -26,6 +26,7 @@ export const INITIAL_STATE: AppState = {
     categories: [],
     chosenCategoryName: '',
     subcategoriesOfChosenCategory: [],
+    inCatalog: false,
     loading: false,
     loaded: false,
     error: null,
@@ -68,5 +69,29 @@ export const HOME_PAGE_GOODS = [
   {
     categoryId: 'hobbies',
     subcategoryId: 'fun-and-rest',
+  },
+];
+
+export const ICONS_OF_CATEGORIES = [
+  {
+    appliances: 'local_laundry_service',
+    icon:  'local_laundry_service',
+  },
+  {
+    electronics: 'phone_iphone',
+    icon: 'phone_iphone',
+  },
+  {
+    'computers-peripherals': 'desktop_windows',
+    icon: 'desktop_windows',
+  },
+  {
+    furniture: 'weekend',
+    icon: 'weekend',
+  },
+  {
+    hobbies: 'palette',
+    icon: 'palette',
+
   },
 ];

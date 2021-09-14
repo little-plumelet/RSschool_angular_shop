@@ -4,9 +4,12 @@
       *ngFor="let category of categories$ | async"
       class="categories_item"
       [class.selected]="(selectedCategoryName$ | async) === category.name"
-      >
+    >
+      <div  *ngFor="let icon of icons">
+        <mat-icon class="category-icon" *ngIf="icon.hasOwnProperty(category.id)"> {{ icon.icon }}</mat-icon>
+      </div>
       <a
-        href="#"
+        (click)="goToSubCategoryList()"
         (mouseenter)="changeChosenCategoryName($event)"
       >
         {{ category.name }}

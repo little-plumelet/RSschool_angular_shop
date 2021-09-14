@@ -44,12 +44,22 @@
   }
 
   &__title {
-    line-height: 140%;
     margin-bottom: 20px;
     padding-top: 20px;
     border-top: 3px solid var(--primaryGreenColor);
     text-align: center;
-    font-size: 18px;
+
+    a {
+      text-decoration: none;
+      line-height: 140%;
+      text-align: center;
+      font-size: 18px;
+      color: white;
+    }
+
+    a:hover {
+      border-bottom: 1px solid white;
+    }
   }
 
   &__availability {
@@ -85,6 +95,10 @@
 
   }
 
+  &__btn:hover {
+    background-color: var(--accentGreenColor);
+  }
+
   &__link {
     width: fit-content;
     align-self: center;
@@ -95,5 +109,10 @@
     border-bottom: 1px solid var(--primaryGreenColor);
     margin-top: 20px;
     line-height: 140%;
+  }
+
+  &__link:hover {
+    color: var(--accentGreenColor);
+    border-bottom: 1px solid var(--accentGreenColor);
   }
 }

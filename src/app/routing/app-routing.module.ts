@@ -5,10 +5,12 @@ import { HomePageComponent } from '../commodities/pages/home-page/home-page.comp
 import { CatalogPageComponent } from '../commodities/pages/catalog-page/catalog-page.component';
 import { ShopItemsOfSubcategoryPageComponent } from '../commodities/pages/shop-items-of-subcategory-page/shop-items-of-subcategory-page.component';
 import { ShopItemCardDetailedComponent } from '../commodities/components/shop-item-card-detailed/shop-item-card-detailed.component';
+import { SubcategoryPageComponent } from '../commodities/pages/subcategory-page/subcategory-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'catalog', component: CatalogPageComponent },
+  { path: 'catalog/:categoryId', component: SubcategoryPageComponent },
   { path: 'catalog/:categoryId/:subcategoryId', component: ShopItemsOfSubcategoryPageComponent },
   { path: 'catalog/:categoryId/:subcategoryId/:itemId', component: ShopItemCardDetailedComponent },
 ];
