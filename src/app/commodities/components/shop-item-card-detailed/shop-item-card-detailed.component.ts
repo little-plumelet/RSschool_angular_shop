@@ -80,7 +80,6 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
         swiperWrappers.forEach((swiperWrapper) => swiperWrapper?.setAttribute('style', 'display: flex; align-items: center;'));
       }));
     }));
-
   }
 
   ngOnDestroy() {

@@ -5,10 +5,28 @@
   align-items: center;
 }
 .shop-item-list {
+
   &__title-block {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    .title-block__bread-crumps {
+      display: flex;
+      align-items: center;
+
+    }
+
+    .sorting-panel-item {
+      color: black;
+    }
+
+    .sorting-panel-icon {
+      margin-left: 10px;
+      color: black;
+      font-size: 20px;
+    }
   }
 
   &__chosenCategoryName,

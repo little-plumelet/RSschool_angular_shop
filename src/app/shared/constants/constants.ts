@@ -15,6 +15,12 @@ export const CITIES = [
   'Сочи',
 ];
 
+export const sortingOrder = {
+  asc: 'ascending',
+  dsc: 'discending',
+  unsorted: 'unsorted',
+};
+
 export const BASE_URL = 'http://localhost:3004';
 
 export const DEBOUNCE_TIME = 1000;
