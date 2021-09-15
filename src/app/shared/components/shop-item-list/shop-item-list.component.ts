@@ -21,4 +21,8 @@ export class ShopItemListComponent implements OnInit {
     this.shopItemList$ = this.shopItemListSearchService.shopItemList$;
   }
 
+  hideShopItemList() {
+    this.shopItemListSearchService.shopItemList$.next([]);
+  }
+
 }

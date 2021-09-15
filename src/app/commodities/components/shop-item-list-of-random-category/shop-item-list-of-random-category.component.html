@@ -1,12 +1,12 @@
-
-<swiper class="mySwiper"
+<!-- [autoplay]="true" -->
+<swiper class="mySwiperHome"
   [slidesPerView]="1"
   [navigation]="{ prevEl: '.swiper-navigation-prev', nextEl: '.swiper-navigation-next' }"
   [zoom]="true"
-  [autoplay]="true"
+
   [pagination]="{ clickable: true }"
 >
-  <ng-template class="swiperSlide" swiperSlide class="swipeSSS" *ngFor="let slide of shopItemListRandom$ | async; index as i" let-data>
+  <ng-template class="swiperSlide" swiperSlide  *ngFor="let slide of shopItemListRandom$ | async; index as i" let-data>
     <div  class="swiperSlide">
       <div class="slider-content">
         <div class="shop-slider__img">

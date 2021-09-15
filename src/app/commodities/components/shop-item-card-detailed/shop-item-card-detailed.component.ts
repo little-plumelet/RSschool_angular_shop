@@ -1,10 +1,34 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { AppState } from 'src/app/redux/app-state.model';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller,
+} from 'swiper';
+
+// install Swiper components
+SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller,
+]);
 
 @Component({
   selector: 'app-shop-item-card-detailed',
@@ -13,6 +37,10 @@ import { IShopItem } from 'src/app/shared/models/shop-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
+  pagination: any = true;
+
+  thumbsSwiper: any;
+
   shopItem$: Observable<IShopItem> = new Observable();
 
   shopItem: IShopItem | null = null;
@@ -27,25 +55,32 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private httpRequestService: HttpRequestsService,
     private store: Store<AppState>,
-    // private router: Router,
     private cdr:ChangeDetectorRef,
+    private router: Router,
   ) {
+
   }
 
   ngOnInit(): void {
     this.chosenCategoryName$ = this.store.select((state) => state.categoriesState.chosenCategoryName);
     this.subscription.push(this.route.params.subscribe((params: Params) => {
-      this.shopItem$ = this.httpRequestService.getShopItemById(params.itemId);
       this.chosenSubCategoryName$ = this.store.select((state) => {
         return state.categoriesState.subcategoriesOfChosenCategory.filter(
           (subcategory) => subcategory.id === params.subcategoryId,
-        )[0].name;
+        )[0]?.name;
       });
+      this.shopItem$ = this.httpRequestService.getShopItemById(params.itemId);
+      this.subscription.push(this.shopItem$.subscribe((shopItem) => {
+        if (shopItem) {
+          this.shopItem = shopItem;
+          this.cdr.detectChanges();
+
+        }
+        const swiperWrappers = document.querySelectorAll('.swiper-wrapper');
+        swiperWrappers.forEach((swiperWrapper) => swiperWrapper?.setAttribute('style', 'display: flex; align-items: center;'));
+      }));
     }));
-    this.subscription.push(this.shopItem$.subscribe((shopItem) => {
-      this.shopItem = shopItem;
-      this.cdr.detectChanges();
-    }));
+
   }
 
   ngOnDestroy() {

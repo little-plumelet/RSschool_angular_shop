@@ -41,6 +41,13 @@
   align-items: center;
   width: 100vw;
 }
+
+.slider-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .shop-slider__item {
 
     width: 100%;
@@ -174,9 +181,11 @@
   height: 600px;
 }
 .swiperSlide {
+  height: 100%;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .slider-content {
   display: flex;

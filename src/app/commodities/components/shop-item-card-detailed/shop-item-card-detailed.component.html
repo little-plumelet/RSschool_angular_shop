@@ -8,8 +8,34 @@
       </div>
     </div>
     <mat-card-content class="detailed-shop-item-card__content">
-      <div class="slider">
-        <img mat-card-image class="detailed-shop-item-card__img"[src]="shopItem.imageUrls[0]" alt="{{ shopItem.name }}">
+      <div class="detailed-shop-item-card__slider">
+        <swiper
+          style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff"
+          [spaceBetween]="10"
+          [navigation]="true"
+          [thumbs]="{ swiper: thumbsSwiper }"
+          class="mySwiper2"
+        >
+          <ng-template swiperSlide class="mySwiper2__slide" *ngFor="let slideUrl of shopItem.imageUrls; index as i" let-data>
+            <img class="mySwiper2__img" [src]="slideUrl" />
+          </ng-template
+      >
+        </swiper>
+        <swiper
+          (swiper)="thumbsSwiper = $event"
+          [spaceBetween]="10"
+          [slidesPerView]="6"
+          [freeMode]="true"
+          [watchSlidesProgress]="true"
+          class="mySwiper"
+        >
+          <ng-template swiperSlide *ngFor="let slideUrl of shopItem.imageUrls; index as i" let-data>
+            <img [src]="slideUrl" />
+          </ng-template>
+        </swiper>
+        <!-- <button type="button" class="swiper-navigation-prev">-----</button>
+        <button type="button" class="swiper-navigation-next">+++++</button> -->
+        <!-- <img mat-card-image class="detailed-shop-item-card__img"[src]="shopItem.imageUrls[0]" alt="{{ shopItem.name }}"> -->
       </div>
       <div class="main-content">
         <div class="main-content-container">

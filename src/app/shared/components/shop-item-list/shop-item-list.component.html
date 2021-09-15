@@ -7,7 +7,8 @@
       class="shop-item"
       >
       <a
-        href="#"
+        (click)="hideShopItemList()"
+        [routerLink]="['/catalog', shopItem.category, shopItem.subCategory, shopItem.id]"
       >
         {{ shopItem.name }}
       </a>
