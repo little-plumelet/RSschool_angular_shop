@@ -13,6 +13,8 @@ import { IShopItem } from 'src/app/shared/models/shop-item';
 export class ShopItemCardComponent implements OnInit, OnDestroy {
   @Input() shopItem?: IShopItem;
 
+  @Input() inFavourite?: boolean;
+
   chosenCategoryId = '';
 
   chosenSubCategoryId = '';
@@ -20,7 +22,6 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   chosenItemId = '';
 
   subscription: Subscription[] = [];
-
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,10 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   addToFavourite(id: string) {
     this.httpRequestService.addToFavouritList(id).subscribe();
+  }
+
+  removeFromFavourite(id: string) {
+    console.log('removeFromFavourite', id);
   }
 
   ngOnDestroy() {

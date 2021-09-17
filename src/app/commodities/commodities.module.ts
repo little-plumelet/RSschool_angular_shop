@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { ShopItemListOfSubcategoryComponent } from './components/shop-item-list-of-subcategory/shop-item-list-of-subcategory.component';
 import { ShopItemCardDetailedComponent } from './components/shop-item-card-detailed/shop-item-card-detailed.component';
 import { SubcategoryPageComponent } from './pages/subcategory-page/subcategory-page.component';
+import { ShopItemListOfFavouriteComponent } from './components/shop-item-list-of-favourite/shop-item-list-of-favourite.component';
+import { FavouritesPageComponent } from './pages/favourites-page/favourites-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SubcategoryPageComponent } from './pages/subcategory-page/subcategory-p
     ShopItemListOfSubcategoryComponent,
     ShopItemCardDetailedComponent,
     SubcategoryPageComponent,
+    ShopItemListOfFavouriteComponent,
+    FavouritesPageComponent,
   ],
   imports: [
     CommonModule,

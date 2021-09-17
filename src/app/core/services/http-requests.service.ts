@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { IToken } from 'src/app/auth/models/token';
+import { IUserInfo } from 'src/app/auth/models/user-info';
 import { IUserRegister } from 'src/app/auth/models/user-register';
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
@@ -38,7 +41,14 @@ export class HttpRequestsService {
   }
 
   getShopItemById(id: string) {
-    return this.http.get<IShopItem>(`${BASE_URL}/goods/item/${id}`);
+    return this.http.get<IShopItem>(`${BASE_URL}/goods/item/${id}`)
+      .pipe(
+        map((shopItem) => shopItem),
+        catchError((error) => {
+          console.log('Error is caught!', error);
+          return throwError(error);
+        }),
+      );
   }
 
   registerUser(user: IUserRegister) {
@@ -56,6 +66,15 @@ export class HttpRequestsService {
       password,
     };
     return this.http.post<IToken>(`${BASE_URL}/users/login`, body);
+  }
+
+  getUserInfo() {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const options = {
+      headers: headers,
+    };
+    return this.http.get<IUserInfo>(`${BASE_URL}/users/userInfo/`, options);
   }
 
   addToFavouritList(id: string) {

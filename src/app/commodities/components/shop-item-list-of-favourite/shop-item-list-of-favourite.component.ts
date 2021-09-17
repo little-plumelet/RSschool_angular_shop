@@ -1,0 +1,39 @@
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { IShopItem } from 'src/app/shared/models/shop-item';
+
+@Component({
+  selector: 'app-shop-item-list-of-favourite',
+  templateUrl: './shop-item-list-of-favourite.component.html',
+  styleUrls: ['./shop-item-list-of-favourite.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ShopItemListOfFavouriteComponent implements OnInit {
+  subscription: Subscription[] = [];
+
+  shopItemList$: Subject<IShopItem[]> = new Subject();
+
+  shopItem$: Observable<IShopItem> = new Observable();
+
+  shopItemList: IShopItem[] = [];
+
+  inFavourite = true;
+
+  constructor(
+    private httpRequestService: HttpRequestsService,
+  ) { }
+
+  ngOnInit(): void {
+    this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+      userInfo.favorites.map((itemId) => {
+        this.shopItem$ = this.httpRequestService.getShopItemById(itemId);
+        this.subscription.push(this.shopItem$.subscribe((shopItem) => {
+          this.shopItemList.push(shopItem);
+          this.shopItemList$.next(this.shopItemList);
+        }));
+      });
+      this.shopItemList = [];
+    });
+  }
+}

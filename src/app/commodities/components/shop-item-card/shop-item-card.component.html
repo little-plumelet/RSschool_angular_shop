@@ -21,7 +21,10 @@
     <button mat-stroked-button class="shop-item-card__btn">
       В корзину
     </button>
-    <a (click)="addToFavourite(shopItem.id)" class="shop-item-card__link">Добавить в избранное</a>
+    <a *ngIf="!inFavourite; else inFavouriteList" (click)="addToFavourite(shopItem.id)" class="shop-item-card__link">Добавить в избранное</a>
+    <ng-template #inFavouriteList>
+      <a (click)="removeFromFavourite(shopItem.id)" class="shop-item-card__link">Удалить из избранного</a>
+    </ng-template>
   </mat-card-actions>
   <mat-card-footer class="card-footer">
   </mat-card-footer>

@@ -7,6 +7,7 @@ import { ShopItemsOfSubcategoryPageComponent } from '../commodities/pages/shop-i
 import { ShopItemCardDetailedComponent } from '../commodities/components/shop-item-card-detailed/shop-item-card-detailed.component';
 import { SubcategoryPageComponent } from '../commodities/pages/subcategory-page/subcategory-page.component';
 import { RegistrationFormComponent } from '../auth/components/registration-form/registration-form.component';
+import { FavouritesPageComponent } from '../commodities/pages/favourites-page/favourites-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'catalog/:categoryId/:subcategoryId', component: ShopItemsOfSubcategoryPageComponent },
   { path: 'catalog/:categoryId/:subcategoryId/:itemId', component: ShopItemCardDetailedComponent },
   { path: 'registration', component: RegistrationFormComponent },
+  { path: 'favourite', component: FavouritesPageComponent },
 ];
 
 @NgModule({
