@@ -21,7 +21,7 @@
     <button mat-stroked-button class="shop-item-card__btn">
       В корзину
     </button>
-    <a href="#" class="shop-item-card__link">Добавить в избранное</a>
+    <a (click)="addToFavourite(shopItem.id)" class="shop-item-card__link">Добавить в избранное</a>
   </mat-card-actions>
   <mat-card-footer class="card-footer">
   </mat-card-footer>

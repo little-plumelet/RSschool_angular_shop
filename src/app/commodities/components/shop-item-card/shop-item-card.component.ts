@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
 
 @Component({
@@ -23,6 +24,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private httpRequestService: HttpRequestsService,
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,10 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
         this.chosenItemId = this.shopItem.id;
       }
     }));
+  }
+
+  addToFavourite(id: string) {
+    this.httpRequestService.addToFavouritList(id).subscribe();
   }
 
   ngOnDestroy() {

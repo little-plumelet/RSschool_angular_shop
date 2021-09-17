@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IToken } from 'src/app/auth/models/token';
 import { IUserRegister } from 'src/app/auth/models/user-register';
@@ -56,5 +56,17 @@ export class HttpRequestsService {
       password,
     };
     return this.http.post<IToken>(`${BASE_URL}/users/login`, body);
+  }
+
+  addToFavouritList(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const options = {
+      headers: headers,
+    };
+    const body = {
+      id: id,
+    };
+    return this.http.post(`${BASE_URL}/users/favorites/`, body, options);
   }
 }
