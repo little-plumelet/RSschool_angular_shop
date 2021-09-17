@@ -7,27 +7,27 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthentificationService {
   token = '';
 
-  email = '';
+  login = '';
 
   token$ = new BehaviorSubject('');
 
-  email$ = new BehaviorSubject('');
+  login$ = new BehaviorSubject('');
 
   constructor() {
-    if (localStorage.getItem('token') && localStorage.getItem('token_email')) {
+    if (localStorage.getItem('token') && localStorage.getItem('login')) {
       this.token = String(localStorage.getItem('token'));
-      this.email = String(localStorage.getItem('token_email'));
+      this.login = String(localStorage.getItem('login'));
       this.token$.next(this.token);
-      this.email$.next(this.email);
+      this.login$.next(this.login);
     }
   }
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('token_email');
+    localStorage.removeItem('login');
     this.token = '';
-    this.email = '';
+    this.login = '';
     this.token$.next(this.token);
-    this.email$.next(this.email);
+    this.login$.next(this.login);
   }
 }

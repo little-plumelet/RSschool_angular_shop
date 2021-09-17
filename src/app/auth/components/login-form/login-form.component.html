@@ -13,15 +13,15 @@ class="cover"
           <mat-icon class="clear">clear</mat-icon>
       </button>
     </div>
-    <label class="form-login-label" for="login">Электронная почта:</label>
+    <label class="form-login-label" for="login">Логин:</label>
     <input
       matInput
       id="login"
-      name="email"
+      name="login"
       class="login-input"
-      type="email"
+      type="text"
       required
-      [(ngModel)]="email"
+      [(ngModel)]="login"
     >
     <label class="form-login-label" for="password">Пароль:</label>
     <input
@@ -48,13 +48,13 @@ class="cover"
     (click)="userLoginFormToggle($event)"
   >
     Не помню пароль
-  </a>
+  </a> -->
   <a
-    href="#"
+    [routerLink]="['/registration']"
     class="registration-link clear"
     (click)="userLoginFormToggle($event)"
   >
     Регистрация
-  </a> -->
+  </a>
   </form>
 </div>

@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IToken } from 'src/app/auth/models/token';
+import { IUserRegister } from 'src/app/auth/models/user-register';
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -36,8 +38,23 @@ export class HttpRequestsService {
   }
 
   getShopItemById(id: string) {
-    return this.http.get<IShopItem>(
-      `${BASE_URL}/goods/item/${id}`,
-    );
+    return this.http.get<IShopItem>(`${BASE_URL}/goods/item/${id}`);
+  }
+
+  registerUser(user: IUserRegister) {
+    const httpParams = new HttpParams()
+      .set(' firstName', user.firstName)
+      .set('lastName', user.lastName)
+      .set('login', user.login)
+      .set('password', user.password);
+    return this.http.post<IToken>(`${BASE_URL}/users/register`, httpParams );
+  }
+
+  loginUser(login: string, password: string) {
+    const body = {
+      login,
+      password,
+    };
+    return this.http.post<IToken>(`${BASE_URL}/users/login`, body);
   }
 }

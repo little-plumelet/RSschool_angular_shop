@@ -13,7 +13,7 @@ export class UserProfileLoggedComponent implements OnInit {
 
   token$ = new Observable();
 
-  email$ = new Observable();
+  login$ = new Observable();
 
   constructor(
     private authentificationService: AuthentificationService,
@@ -22,7 +22,7 @@ export class UserProfileLoggedComponent implements OnInit {
 
   ngOnInit(): void {
     this.token$ = this.authentificationService.token$;
-    this.email$ = this.authentificationService.email$;
+    this.login$ = this.authentificationService.login$;
   }
 
   userProfileBlockToggle() {

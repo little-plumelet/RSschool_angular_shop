@@ -1,0 +1,63 @@
+<div class="wrapper form-registration-wrapper">
+  <form class="form-registration">
+    <div class="form-registration-header">
+      <span class="form-registration-title">Регистрация</span>
+      <button
+        mat-icon-button
+        color="primary"
+        [routerLink]="['/']"
+        >
+          <mat-icon class="clear">clear</mat-icon>
+      </button>
+    </div>
+    <label class="form-registration-label" for="first-name">Имя:</label>
+    <input
+      matInput
+      id="first-name"
+      name="first-name"
+      class="registration-input"
+      type="text"
+      required
+      [(ngModel)]="firstName"
+    >
+    <label class="form-registration-label" for="last-name">Фамилия:</label>
+    <input
+      matInput
+      id="last-name"
+      name="last-name"
+      class="registration-input"
+      type="text"
+      required
+      [(ngModel)]="lastName"
+    >
+    <label class="form-registration-label" for="login">Логин:</label>
+    <input
+      matInput
+      id="login"
+      name="login"
+      class="registration-input"
+      type="text"
+      required
+      [(ngModel)]="login"
+    >
+    <label class="form-registration-label" for="password">Пароль:</label>
+    <input
+      matInput
+      id="password"
+      name="password"
+      class="password-input"
+      type="password"
+      required
+      [(ngModel)]="password"
+    >
+    <button
+      class="login-btn clear"
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      [routerLink]="['/']"
+    >
+      Зарегистрировать
+  </button>
+  </form>
+</div>

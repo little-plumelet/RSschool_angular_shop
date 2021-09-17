@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { UserAuthToggleService } from 'src/app/shared/services/user-auth-toggle.service';
 import { AuthentificationService } from '../../services/authentification.service';
 
@@ -12,7 +13,7 @@ import { AuthentificationService } from '../../services/authentification.service
 export class LoginFormComponent implements OnInit {
   showHideProfileBlock = false;
 
-  email = '';
+  login = '';
 
   password = '';
 
@@ -21,6 +22,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private userAuthToggleService: UserAuthToggleService,
     private authentificationService: AuthentificationService,
+    private httpRequestService: HttpRequestsService,
   ){}
 
   ngOnInit() {
@@ -35,14 +37,17 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    let token = '';
-    if (this.email && this.password) {
-      token = this.email + this.password;
-      localStorage.setItem('token', token);
-      localStorage.setItem('token_email', this.email);
-      this.authentificationService.email$.next(this.email);
-      this.authentificationService.token$.next(token);
-      this.email = '';
+    if (this.login && this.password) {
+      const login = this.login;
+      this.httpRequestService.loginUser(this.login, this.password).subscribe((token) => {
+        if (token.token) {
+          this.authentificationService.login$.next(login);
+          this.authentificationService.token$.next(token.token);
+          localStorage.setItem('token', token.token);
+          localStorage.setItem('login', login);
+        }
+      });
+      this.login = '';
       this.password = '';
     }
   }
