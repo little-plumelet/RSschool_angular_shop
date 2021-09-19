@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { IToken } from 'src/app/auth/models/token';
 import { IUserInfo } from 'src/app/auth/models/user-info';
 import { IUserRegister } from 'src/app/auth/models/user-register';
+import { ShopItemListOfFavouriteService } from 'src/app/commodities/services/shop-item-list-of-favourite.service';
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -18,7 +19,10 @@ function getRandomIntInclusive(min: number, max: number): number {
 })
 export class HttpRequestsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private shopItemListofFavouriteService: ShopItemListOfFavouriteService,
+  ) {}
 
   getCategories() {
     return this.http.get<ICategory[]>(`${BASE_URL}/categories`);
@@ -87,5 +91,30 @@ export class HttpRequestsService {
       id: id,
     };
     return this.http.post(`${BASE_URL}/users/favorites/`, body, options);
+  }
+
+  removeFromFavouriteList(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const httpParams = new HttpParams()
+      .set('id', id);
+    const options = {
+      headers: headers,
+      params: httpParams,
+    };
+
+    return this.http.delete(`${BASE_URL}/users/favorites/`, options)
+      .pipe(
+        map(() => {
+          const newShopItemList = this.shopItemListofFavouriteService.shopItemListOfFavourite$.value.filter(
+            (shopItem) => shopItem.id != id,
+          );
+          this.shopItemListofFavouriteService.shopItemListOfFavourite$.next(newShopItemList);
+        }),
+        catchError((error) => {
+          console.log('Error is caught!', error);
+          return throwError(error);
+        }),
+      );
   }
 }

@@ -44,6 +44,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   removeFromFavourite(id: string) {
     console.log('removeFromFavourite', id);
+    this.httpRequestService.removeFromFavouriteList(id).subscribe();
   }
 
   ngOnDestroy() {

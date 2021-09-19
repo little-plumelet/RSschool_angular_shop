@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import { ShopItemListOfFavouriteService } from '../../services/shop-item-list-of-favourite.service';
 
 @Component({
   selector: 'app-shop-item-list-of-favourite',
@@ -22,15 +23,17 @@ export class ShopItemListOfFavouriteComponent implements OnInit {
 
   constructor(
     private httpRequestService: HttpRequestsService,
+    private shopItemListOfFavouriteService: ShopItemListOfFavouriteService,
   ) { }
 
   ngOnInit(): void {
+    this.shopItemList$ = this.shopItemListOfFavouriteService.shopItemListOfFavourite$;
     this.httpRequestService.getUserInfo().subscribe((userInfo) => {
       userInfo.favorites.map((itemId) => {
         this.shopItem$ = this.httpRequestService.getShopItemById(itemId);
         this.subscription.push(this.shopItem$.subscribe((shopItem) => {
           this.shopItemList.push(shopItem);
-          this.shopItemList$.next(this.shopItemList);
+          this.shopItemListOfFavouriteService.shopItemListOfFavourite$.next(this.shopItemList);
         }));
       });
       this.shopItemList = [];
