@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { CommoditiesModule } from './commodities/commodities.module';
 import { AppRoutingModule } from './routing/app-routing.module';
+import { ShopCartModule } from './shop-cart/shop-cart.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
     AppRoutingModule,
     AuthModule,
     CommoditiesModule,
+    ShopCartModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,

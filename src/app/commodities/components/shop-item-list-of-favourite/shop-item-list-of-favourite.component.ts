@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -10,7 +10,7 @@ import { ShopItemListOfFavouriteService } from '../../services/shop-item-list-of
   styleUrls: ['./shop-item-list-of-favourite.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShopItemListOfFavouriteComponent implements OnInit {
+export class ShopItemListOfFavouriteComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
 
   shopItemList$: Subject<IShopItem[]> = new Subject();
@@ -38,5 +38,9 @@ export class ShopItemListOfFavouriteComponent implements OnInit {
       });
       this.shopItemList = [];
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((element) => element.unsubscribe());
   }
 }

@@ -9,6 +9,7 @@ import { ShopItemListOfFavouriteService } from 'src/app/commodities/services/sho
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import { ShopItemListOfShopCartService } from 'src/app/shop-cart/services/shop-item-list-of-shop-cart.service';
 
 function getRandomIntInclusive(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min; // Максимум и минимум включаются
@@ -22,6 +23,7 @@ export class HttpRequestsService {
   constructor(
     private http: HttpClient,
     private shopItemListofFavouriteService: ShopItemListOfFavouriteService,
+    private shopItemListOfShopCartService: ShopItemListOfShopCartService,
   ) {}
 
   getCategories() {
@@ -78,7 +80,17 @@ export class HttpRequestsService {
     const options = {
       headers: headers,
     };
-    return this.http.get<IUserInfo>(`${BASE_URL}/users/userInfo/`, options);
+    return this.http.get<IUserInfo>(`${BASE_URL}/users/userInfo/`, options).pipe(
+      map((userInfo) => userInfo),
+      catchError((error) => {
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!', error);
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return throwError(error);
+      }),
+    );
   }
 
   addToFavouritList(id: string) {
@@ -90,7 +102,17 @@ export class HttpRequestsService {
     const body = {
       id: id,
     };
-    return this.http.post(`${BASE_URL}/users/favorites/`, body, options);
+    return this.http.post(`${BASE_URL}/users/favorites/`, body, options).pipe(
+      map(() => {}),
+      catchError((error) => {
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!', error);
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return throwError(error);
+      }),
+    );
   }
 
   removeFromFavouriteList(id: string) {
@@ -112,7 +134,52 @@ export class HttpRequestsService {
           this.shopItemListofFavouriteService.shopItemListOfFavourite$.next(newShopItemList);
         }),
         catchError((error) => {
-          console.log('Error is caught!', error);
+          if (Number(error.status) === 401) {
+            console.log('Error! User token is missing!', error);
+          } else {
+            console.log('Error is caught!', error);
+          }
+          return throwError(error);
+        }),
+      );
+  }
+
+  addToCart(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const options = {
+      headers: headers,
+    };
+    const body = {
+      id: id,
+    };
+    return this.http.post(`${BASE_URL}/users/cart/`, body, options);
+  }
+
+  removeFromCart(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const httpParams = new HttpParams()
+      .set('id', id);
+    const options = {
+      headers: headers,
+      params: httpParams,
+    };
+
+    return this.http.delete(`${BASE_URL}/users/cart/`, options)
+      .pipe(
+        map(() => {
+          const newShopItemList = this.shopItemListOfShopCartService.shopItemListInCart$.value.filter(
+            (shopItem) => shopItem.id != id,
+          );
+          this.shopItemListOfShopCartService.shopItemListInCart$.next(newShopItemList);
+        }),
+        catchError((error) => {
+          if (Number(error.status) === 401) {
+            console.log('Error! User token is missing!', error);
+          } else {
+            console.log('Error is caught!', error);
+          }
           return throwError(error);
         }),
       );

@@ -15,6 +15,7 @@ import { CategoriesEffects } from '../redux/effects/categories-effects';
 import { SearchGoodsInputComponent } from './components/header/search-goods-input/search-goods-input.component';
 import { ShopItemListComponent } from './components/shop-item-list/shop-item-list.component';
 import { RouterModule } from '@angular/router';
+import { ShopItemAvaliabilityStyleDirective } from './directives/shop-item-avaliability-style.directive';
 
 
 
@@ -27,6 +28,7 @@ import { RouterModule } from '@angular/router';
     NavigationCategoriesBlockComponent,
     SearchGoodsInputComponent,
     ShopItemListComponent,
+    ShopItemAvaliabilityStyleDirective,
   ],
   imports: [
     CommonModule,

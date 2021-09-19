@@ -30,6 +30,7 @@
         text-decoration: none;
         font-size: 14px;
         color: black;
+        cursor: pointer;
       }
 
       .mat-icon {
@@ -104,6 +105,10 @@
     color: black;
     text-align: center;
     border-bottom: 1px solid var(--primaryGreenColor);
+    cursor: pointer;
+  }
+  &__link:hover {
+    color: var(--primaryGreenColor);
   }
 
   &__description-container {

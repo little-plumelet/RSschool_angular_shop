@@ -51,6 +51,8 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
 
   chosenSubCategoryName$: Observable<string> = new Observable();
 
+  inFavourite: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private httpRequestService: HttpRequestsService,
@@ -80,6 +82,32 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
         swiperWrappers.forEach((swiperWrapper) => swiperWrapper?.setAttribute('style', 'display: flex; align-items: center;'));
       }));
     }));
+
+    this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+      userInfo.favorites.forEach((favouriteItem) => {
+        if (favouriteItem == this.shopItem?.id) {
+          this.inFavourite = true;
+          this.cdr.detectChanges();
+        }
+      });
+    });
+  }
+
+  addToFavourite(id: string) {
+    this.subscription.push(this.httpRequestService.addToFavouritList(id).subscribe());
+    this.inFavourite = true;
+    this.cdr.detectChanges();
+  }
+
+  removeFromFavourite(id: string) {
+    console.log('removeFromFavourite', id);
+    this.subscription.push(this.httpRequestService.removeFromFavouriteList(id).subscribe());
+    this.inFavourite = false;
+    this.cdr.detectChanges();
+  }
+
+  addToCart(id: string) {
+    this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
   }
 
   ngOnDestroy() {

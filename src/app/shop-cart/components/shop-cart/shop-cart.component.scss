@@ -1,0 +1,33 @@
+.cart-table_shop-item {
+  grid-area: item;
+  text-align: center;
+}
+.cart-table_shop-item-description {
+  grid-area: description;
+  text-align: center;
+}
+.cart-table_shop-item-number {
+  grid-area: number;
+  text-align: center;
+}
+.cart-table_shop-item-delivery {
+  grid-area: delivery;
+  text-align: center;
+}
+.cart-table_shop-item-price {
+  grid-area: price;
+  text-align: center;
+}
+
+.cart-table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 150px 200px 150px;
+  grid-template-areas:
+  'item item description description number delivery price';
+  border-bottom: 1px solid var(--primaryGreenColor);
+  border-top: 1px solid var(--primaryGreenColor);
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+

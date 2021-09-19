@@ -61,10 +61,13 @@
         </div>
         <mat-card-actions class="detailed-shop-item-card__actions">
           <!-- [routerLink]="['/main', item.id] -->
-          <button mat-stroked-button class="detailed-shop-item-card__btn">
+          <button mat-stroked-button class="detailed-shop-item-card__btn" (click)="addToCart(shopItem.id)">
             В корзину
           </button>
-          <a href="#" class="detailed-shop-item-card__link">Добавить в избранное</a>
+          <a *ngIf="!inFavourite; else inFavouriteList" (click)="addToFavourite(shopItem.id)" class="detailed-shop-item-card__link">Добавить в избранное</a>
+          <ng-template #inFavouriteList>
+            <a (click)="removeFromFavourite(shopItem.id)" class="detailed-shop-item-card__link">Удалить из избранного</a>
+          </ng-template>
         </mat-card-actions>
       </div>
     </mat-card-content>

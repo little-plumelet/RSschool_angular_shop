@@ -47,6 +47,10 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     this.httpRequestService.removeFromFavouriteList(id).subscribe();
   }
 
+  addToCart(id: string) {
+    this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
+  }
+
   ngOnDestroy() {
     this.subscription.forEach((element) => element.unsubscribe());
   }

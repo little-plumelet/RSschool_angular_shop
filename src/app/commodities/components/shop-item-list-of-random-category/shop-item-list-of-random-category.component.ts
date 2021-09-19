@@ -15,6 +15,7 @@ import SwiperCore, {
   Thumbs,
   Controller,
 } from 'swiper';
+import { Router } from '@angular/router';
 
 // install Swiper components
 SwiperCore.use([
@@ -48,6 +49,7 @@ export class ShopItemListOfRandomCategoryComponent implements OnInit, OnDestroy 
   constructor(
     private httpRequestService: HttpRequestsService,
     private shopItemListForHomePage: ShopItemListForHomePageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +67,16 @@ export class ShopItemListOfRandomCategoryComponent implements OnInit, OnDestroy 
         this.shopItemListForHomePage.shopItemListForHomePage$.next(shopItemList);
       }),
     );
+  }
+
+  goToDetailedPage(id: string) {
+    let category: string;
+    let subCategory: string;
+    this.httpRequestService.getShopItemById(id).subscribe((shopItem) => {
+      category = shopItem.category;
+      subCategory = shopItem.subCategory;
+      this.router.navigate([`catalog/${category}/${subCategory}/${id}`]);
+    });
   }
 
   ngOnDestroy() {

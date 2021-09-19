@@ -1,0 +1,19 @@
+<div class="shop-item-in-cart-card" *ngIf="shopItem">
+  <div class="cart-table-line">
+    <div class="cart-table_shop-item">
+      <img [src]="shopItem.imageUrls[0]" alt="shopItem.name" class="">
+      <a (click)="removeFromCart(shopItem.id)">Удалить</a>
+    </div>
+    <div class="cart-table_shop-item-description">
+      <a [routerLink]="['/catalog', chosenCategoryId, chosenSubCategoryId, chosenItemId]" class="description-title">{{ shopItem.name }}</a>
+      <div class="description-text">{{ shopItem.description }}</div>
+    </div>
+    <div class="cart-table_shop-item-number">
+      <button class="minus" (click)="minus()">-</button>
+      <input type="number" step="1" min="1" max="shopItem.availableAmount" placeholder="1" [value]="inputValue">
+      <button class="plus" (click)="plus()">+</button>
+    </div>
+    <div class="cart-table_shop-item-delivery">{{ delivery }}</div>
+    <div class="cart-table_shop-item-price" >{{totalPrice | number: '1.2-3'}}</div>
+  </div>
+</div>

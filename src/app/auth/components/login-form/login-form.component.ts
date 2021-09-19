@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { UserAuthToggleService } from 'src/app/shared/services/user-auth-toggle.service';
@@ -23,6 +24,7 @@ export class LoginFormComponent implements OnInit {
     private userAuthToggleService: UserAuthToggleService,
     private authentificationService: AuthentificationService,
     private httpRequestService: HttpRequestsService,
+    private router: Router,
   ){}
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class LoginFormComponent implements OnInit {
       });
       this.login = '';
       this.password = '';
+      this.router.navigate(['/']);
     }
   }
 }

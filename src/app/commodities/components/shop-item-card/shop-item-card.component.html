@@ -14,11 +14,11 @@
       <span>В наличии</span>
     </p>
     <ng-template #notAvailable>Нет в наличии</ng-template>
-    <p class="shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} руб</p>
+    <p class="shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} бел рублей</p>
   </mat-card-content>
   <mat-card-actions class="shop-item-card__actions">
     <!-- [routerLink]="['/main', item.id]" -->
-    <button mat-stroked-button class="shop-item-card__btn">
+    <button mat-stroked-button class="shop-item-card__btn" (click)="addToCart(shopItem.id)">
       В корзину
     </button>
     <a *ngIf="!inFavourite; else inFavouriteList" (click)="addToFavourite(shopItem.id)" class="shop-item-card__link">Добавить в избранное</a>

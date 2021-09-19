@@ -56,6 +56,10 @@ export class NavigationMainBlockComponent implements OnInit, OnDestroy {
     }
   }
 
+  goToShopCartPage() {
+    this.router.navigate(['/shop-cart']);
+  }
+
   ngOnDestroy() {
     this.subscription.forEach((element) => element.unsubscribe());
   }

@@ -8,7 +8,7 @@
     <p class="logged-title">{{ login$ | async }}</p>
     <ul class="user-profile-nav logged-nav">
       <li class="nav-item user-profile-shopping_cart">
-        <a href="#">
+        <a [routerLink]="['/shop-cart']">
           <mat-icon class="nav-item-icon">shopping_cart</mat-icon>
           Корзина
         </a>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserAuthToggleService } from 'src/app/shared/services/user-auth-toggle.service';
+import { ShopItemListOfShopCartService } from 'src/app/shop-cart/services/shop-item-list-of-shop-cart.service';
 import { AuthentificationService } from '../../services/authentification.service';
 
 @Component({
@@ -18,6 +20,8 @@ export class UserProfileLoggedComponent implements OnInit {
   constructor(
     private authentificationService: AuthentificationService,
     public userAuthToggleService: UserAuthToggleService,
+    private shopItemListOfCartService: ShopItemListOfShopCartService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -31,5 +35,7 @@ export class UserProfileLoggedComponent implements OnInit {
 
   logOut() {
     this.authentificationService.logOut();
+    this.shopItemListOfCartService.shopItemListInCart$.next([]);
+    this.router.navigate(['/']);
   }
 }
