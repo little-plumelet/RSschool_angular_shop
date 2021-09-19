@@ -10,17 +10,29 @@
       <a [routerLink]="['/catalog', chosenCategoryId, chosenSubCategoryId, chosenItemId]">{{ shopItem.name }}</a>
     </mat-card-title>
     <p class="shop-item-card__availability" *ngIf="shopItem.availableAmount; else notAvailable">
-      <mat-icon color="accent" class="availability__icon">done</mat-icon>
+      <mat-icon appShopItemAvaliabilityStyle avaliableNumber="{{ shopItem.availableAmount }}" class="availability__icon">done</mat-icon>
       <span>В наличии</span>
     </p>
     <ng-template #notAvailable>Нет в наличии</ng-template>
     <p class="shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} бел рублей</p>
   </mat-card-content>
   <mat-card-actions class="shop-item-card__actions">
-    <!-- [routerLink]="['/main', item.id]" -->
-    <button mat-stroked-button class="shop-item-card__btn" (click)="addToCart(shopItem.id)">
+    <button
+      mat-stroked-button
+      *ngIf="!shopItem.isInCart; else inCart"
+      class="shop-item-card__btn"
+      (click)="addToCart(shopItem.id)"
+    >
       В корзину
     </button>
+    <ng-template #inCart>
+      <button
+        mat-stroked-button
+        class="shop-item-card__btn"
+      >
+        В корзинe
+      </button>
+    </ng-template>
     <a *ngIf="!inFavourite; else inFavouriteList" (click)="addToFavourite(shopItem.id)" class="shop-item-card__link">Добавить в избранное</a>
     <ng-template #inFavouriteList>
       <a (click)="removeFromFavourite(shopItem.id)" class="shop-item-card__link">Удалить из избранного</a>

@@ -52,12 +52,14 @@
               <mat-icon color="accent" class="star__icon">star_rate</mat-icon>
             </div>
           </div>
-          <p class="detailed-shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} руб</p>
+          <p class="detailed-shop-item-card__price">{{ shopItem.price | number: '1.2-3'}} бел рублей</p>
           <p class="detailed-shop-item-card__availability" *ngIf="shopItem.availableAmount; else notAvailable">
-            <mat-icon color="accent" class="availability__icon">done</mat-icon>
+            <mat-icon appShopItemAvaliabilityStyle avaliableNumber="{{ shopItem.availableAmount }}" class="availability__icon">done</mat-icon>
             <span>В наличии</span>
           </p>
-          <ng-template #notAvailable class="detailed-shop-item-card__availability">Нет в наличии</ng-template>
+          <ng-template #notAvailable>
+            <p class="detailed-shop-item-card__availability" style="font-size: 14px;">Нет в наличии</p>
+          </ng-template>
         </div>
         <mat-card-actions class="detailed-shop-item-card__actions">
           <!-- [routerLink]="['/main', item.id] -->

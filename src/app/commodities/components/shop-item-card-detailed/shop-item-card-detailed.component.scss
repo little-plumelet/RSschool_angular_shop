@@ -42,12 +42,16 @@
   &__title {
     color: black;
     margin-bottom: 20px;
+    position: relative;
     .title {
       border-bottom: 1px solid var(--primaryGreenColor);
     }
   }
 
   &__popular {
+    position: absolute;
+    top: -45px;
+    right: 35px;
     margin-left: 20px;
     padding-bottom: 20px;
     font-size: 36px;
@@ -73,8 +77,14 @@
 
   &__availability {
     display: flex;
+    width: fit-content;
     align-items: center;
     color: black;
+    background-color: var(--lightGray);
+
+    span {
+      padding-right: 20px;
+    }
 
     .availability__icon {
       margin-right: 10px;

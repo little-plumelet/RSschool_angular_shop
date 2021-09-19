@@ -45,6 +45,7 @@ import { ShopItemAvaliabilityStyleDirective } from './directives/shop-item-avali
     HeaderComponent,
     FooterComponent,
     ShopItemListComponent,
+    ShopItemAvaliabilityStyleDirective,
   ],
 })
 export class SharedModule { }
