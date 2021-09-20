@@ -13,6 +13,9 @@ export const CITIES = [
   'Ростов-на-Дону',
   'Волгоград',
   'Сочи',
+  'Минск',
+  'Витебск',
+  'Гомель',
 ];
 
 export const sortingOrder = {

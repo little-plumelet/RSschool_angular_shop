@@ -17,6 +17,7 @@ import { ShopItemCardDetailedComponent } from './components/shop-item-card-detai
 import { SubcategoryPageComponent } from './pages/subcategory-page/subcategory-page.component';
 import { ShopItemListOfFavouriteComponent } from './components/shop-item-list-of-favourite/shop-item-list-of-favourite.component';
 import { FavouritesPageComponent } from './pages/favourites-page/favourites-page.component';
+import { ShopAdvantagesComponent } from './components/shop-advantages/shop-advantages.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FavouritesPageComponent } from './pages/favourites-page/favourites-page
     SubcategoryPageComponent,
     ShopItemListOfFavouriteComponent,
     FavouritesPageComponent,
+    ShopAdvantagesComponent,
   ],
   imports: [
     CommonModule,
