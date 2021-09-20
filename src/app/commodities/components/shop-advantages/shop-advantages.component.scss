@@ -2,13 +2,15 @@
 .advantages {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 60px 0;
 }
 .advantages-content {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   padding: 0 20px;
+  width: 50%;
 
   &-quality,
   &-delivery,
