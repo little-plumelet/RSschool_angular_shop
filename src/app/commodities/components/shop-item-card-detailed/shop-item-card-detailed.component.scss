@@ -45,6 +45,7 @@
     position: relative;
     .title {
       border-bottom: 1px solid var(--primaryGreenColor);
+      line-height: 120%;
     }
   }
 
@@ -106,6 +107,11 @@
     background-color: var(--primaryGreenColor);
   }
 
+  .detailed-shop-item-in-card__btn {
+    background-color: var(--primaryPurpleColor);
+    pointer-events: none;
+  }
+
   &__link {
     width: 50%;
     align-self: flex-end;
@@ -119,6 +125,9 @@
   }
   &__link:hover {
     color: var(--primaryGreenColor);
+  }
+  &__link-remove {
+    border-bottom: 1px solid var(--primaryPurpleColor);
   }
 
   &__description-container {

@@ -38,7 +38,6 @@ export class RegistrationFormComponent {
       password: this.password,
     };
 
-    console.log('userRegister.login = ', userRegister.login);
     this.subscription.push(this.httpService.registerUser(userRegister).subscribe((token) => {
       this.authTokenService.token$.next(token.token);
       this.authTokenService.login$.next(userRegister.login);

@@ -21,6 +21,10 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
 
   chosenSubCategoryName$: Observable<string> = new Observable();
 
+  chosenCategoryId = '';
+
+  chosenSubCategoryId = '';
+
   shopItemList$: Subject<IShopItem[]> = new Subject();
 
   shopItemList: IShopItem[] = [];
@@ -46,6 +50,8 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.chosenCategoryName$ = this.store.select((state) => state.categoriesState.chosenCategoryName);
     this.subscription.push(this.route.params.subscribe((params: Params) => {
+      this.chosenCategoryId = params.categoryId;
+      this.chosenSubCategoryId = params.subcategoryId;
       this.subscription.push(this.httpRequestService.getGoodsOfSubcategory(
         params.categoryId, params.subcategoryId,
       ).subscribe((shopItems) => {
@@ -57,6 +63,7 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
           (subcategory) => subcategory.id === params.subcategoryId,
         )[0]?.name;
       });
+
     }));
 
   }

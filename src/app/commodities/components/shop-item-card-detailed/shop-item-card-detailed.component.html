@@ -2,9 +2,9 @@
   <mat-card class="detailed-shop-item-card" *ngIf="shopItem" class="detailed-shop-item-card">
     <div class="detailed-shop-item-card__title-block">
       <div class="path">
-        <a class="detailed-shop-item-list__chosenCategoryName" href="#">{{ chosenCategoryName$ | async }}</a>
+        <a class="detailed-shop-item-list__chosenCategoryName" [routerLink]="['/catalog', shopItem.category]">{{ categoryName }}</a>
         <mat-icon class="detailed-shop-item-list__icon">chevron_right</mat-icon>
-        <a class="detailed-shop-item-list__chosenSubCategoryName" href="#">{{ chosenSubCategoryName$ | async }}</a>
+        <a class="detailed-shop-item-list__chosenSubCategoryName" [routerLink]="['/catalog', shopItem.category, shopItem.subCategory]">{{ subcategoryName }}</a>
       </div>
     </div>
     <mat-card-content class="detailed-shop-item-card__content">
@@ -63,12 +63,25 @@
         </div>
         <mat-card-actions class="detailed-shop-item-card__actions">
           <!-- [routerLink]="['/main', item.id] -->
-          <button mat-stroked-button class="detailed-shop-item-card__btn" (click)="addToCart(shopItem.id)">
+          <button
+            mat-stroked-button
+            class="detailed-shop-item-card__btn"
+            (click)="addToCart(shopItem.id)"
+            *ngIf="!inCart; else placedInCart"
+          >
             В корзину
           </button>
+          <ng-template #placedInCart>
+            <button
+              mat-stroked-button
+              class="detailed-shop-item-card__btn detailed-shop-item-in-card__btn"
+            >
+              В корзинe
+            </button>
+          </ng-template>
           <a *ngIf="!inFavourite; else inFavouriteList" (click)="addToFavourite(shopItem.id)" class="detailed-shop-item-card__link">Добавить в избранное</a>
           <ng-template #inFavouriteList>
-            <a (click)="removeFromFavourite(shopItem.id)" class="detailed-shop-item-card__link">Удалить из избранного</a>
+            <a (click)="removeFromFavourite(shopItem.id)" class="detailed-shop-item-card__link detailed-shop-item-card__link-remove">Удалить из избранного</a>
           </ng-template>
         </mat-card-actions>
       </div>

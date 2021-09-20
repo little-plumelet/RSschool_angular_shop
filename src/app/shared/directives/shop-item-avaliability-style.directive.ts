@@ -26,7 +26,7 @@ export class ShopItemAvaliabilityStyleDirective implements OnInit {
   ngOnInit() {
     this.renderer.setStyle(this.elementRef.nativeElement, 'color', (Object.keys(shopItemAvaliabilityMap).find(
       (key) => (Number(this.avaliableNumber) >= shopItemAvaliabilityMap[key as keyof IShopItemAvaliabilityMap][0]
-        && Number(this.avaliableNumber) < shopItemAvaliabilityMap[key as keyof IShopItemAvaliabilityMap][1]),
+        && Number(this.avaliableNumber) <= shopItemAvaliabilityMap[key as keyof IShopItemAvaliabilityMap][1]),
     )));
   }
 }

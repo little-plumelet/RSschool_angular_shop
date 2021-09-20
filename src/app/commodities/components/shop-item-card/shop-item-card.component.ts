@@ -23,6 +23,8 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
 
   @Input() inFavourite?: boolean;
 
+  inCart: boolean = false;
+
   chosenCategoryId = '';
 
   chosenSubCategoryId = '';
@@ -47,6 +49,20 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
         this.chosenItemId = this.shopItem.id;
       }
     }));
+    this.subscription.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+      userInfo.favorites.forEach((favouriteItem) => {
+        if (favouriteItem === this.shopItem?.id) {
+          this.inFavourite = true;
+          this.cdr.detectChanges();
+        }
+      });
+      userInfo.cart.forEach((itemInCart) => {
+        if (itemInCart === this.shopItem?.id) {
+          this.inCart = true;
+          this.cdr.detectChanges();
+        }
+      });
+    }));
   }
 
   addToFavourite(id: string) {
@@ -65,6 +81,7 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
     if (this.shopItem) {
       this.shopItem.isInCart = true;
+      this.inCart = true;
       this.cdr.detectChanges();
     }
   }

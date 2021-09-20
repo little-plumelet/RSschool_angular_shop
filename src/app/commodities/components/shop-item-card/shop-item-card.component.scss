@@ -103,6 +103,11 @@
     background-color: var(--accentGreenColor);
   }
 
+  .shop-item-in-card__btn {
+    background-color: var(--primaryPurpleColor);
+    pointer-events: none;
+  }
+
   &__link {
     width: fit-content;
     align-self: center;
@@ -119,5 +124,9 @@
   &__link:hover {
     color: var(--accentGreenColor);
     border-bottom: 1px solid var(--accentGreenColor);
+  }
+
+  &__link-remove {
+    border-bottom: 1px solid var(--primaryPurpleColor);
   }
 }
