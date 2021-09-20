@@ -9,6 +9,10 @@ import { ShopItemListOfFavouriteService } from 'src/app/commodities/services/sho
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import { IOrderDetails } from 'src/app/shop-cart/models/order-details';
+import { IOrderItem } from 'src/app/shop-cart/models/order-item';
+import { OrderFinishService } from 'src/app/shop-cart/services/order-finish.service';
+import { OrderItemListService } from 'src/app/shop-cart/services/order-item-list.service';
 import { ShopItemListOfShopCartService } from 'src/app/shop-cart/services/shop-item-list-of-shop-cart.service';
 
 function getRandomIntInclusive(min: number, max: number): number {
@@ -24,6 +28,8 @@ export class HttpRequestsService {
     private http: HttpClient,
     private shopItemListofFavouriteService: ShopItemListOfFavouriteService,
     private shopItemListOfShopCartService: ShopItemListOfShopCartService,
+    private orderItemListService: OrderItemListService,
+    private orderFinishService: OrderFinishService,
   ) {}
 
   getCategories() {
@@ -183,5 +189,42 @@ export class HttpRequestsService {
           return throwError(error);
         }),
       );
+  }
+
+  postOrder(orderDetails: IOrderDetails) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    let orderList: IOrderItem[] = [];
+    this.orderItemListService.orderItemList$.subscribe((orderItemList) => {
+      orderList = orderItemList;
+    });
+    const body = {
+      items: orderList,
+      details: orderDetails,
+    };
+    const options = {
+      headers: headers,
+    };
+
+    return this.http.post(`${BASE_URL}/users/order`, body, options).pipe(
+      map(() => {
+        orderList = [];
+        this.orderItemListService.orderItemList$.next(orderList);
+        this.orderFinishService.orderFinish$.next(true);
+      }),
+      catchError((error) => {
+        // временный код - пока есть ошибка с сервером (пробрасывает статус 200 в ошибку)
+        orderList = [];
+        this.orderItemListService.orderItemList$.next(orderList);
+        this.orderFinishService.orderFinish$.next(true);
+
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!', error);
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return throwError(error);
+      }),
+    );
   }
 }

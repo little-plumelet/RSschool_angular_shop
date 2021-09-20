@@ -19,6 +19,7 @@
       type="text"
       required
       [(ngModel)]="firstName"
+      (focus)="hideToolTip()"
     >
     <label class="form-registration-label" for="last-name">Фамилия:</label>
     <input
@@ -29,6 +30,7 @@
       type="text"
       required
       [(ngModel)]="lastName"
+      (focus)="hideToolTip()"
     >
     <label class="form-registration-label" for="login">Логин:</label>
     <input
@@ -39,6 +41,7 @@
       type="text"
       required
       [(ngModel)]="login"
+      (focus)="hideToolTip()"
     >
     <label class="form-registration-label" for="password">Пароль:</label>
     <input
@@ -49,15 +52,28 @@
       type="password"
       required
       [(ngModel)]="password"
+      (focus)="hideToolTip()"
     >
     <button
       class="login-btn clear"
       mat-raised-button
       color="primary"
       (click)="onSubmit()"
-      [routerLink]="['/']"
     >
       Зарегистрировать
-  </button>
+    </button>
   </form>
+  <div
+    *ngIf="showToolTip$ | async"
+    class="order-form-toolTip"
+  >
+    Заполните все поля
+    <button
+        mat-icon-button
+        color="primary"
+        (click)="hideToolTip()"
+    >
+      <mat-icon class="clear">clear</mat-icon>
+    </button>
+  </div>
 </div>

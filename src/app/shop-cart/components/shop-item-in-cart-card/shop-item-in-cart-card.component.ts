@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@a
 import { Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import { IOrderItem } from '../../models/order-item';
+import { OrderItemListService } from '../../services/order-item-list.service';
 
 const DELIVERY = {
   today: 'курьером сегодня',
@@ -35,8 +37,11 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
 
   chosenItemId = '';
 
+  orderList: IOrderItem[] = [];
+
   constructor(
     private httpRequestService: HttpRequestsService,
+    private orderItemListService: OrderItemListService,
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +52,11 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
       this.chosenCategoryId = this.shopItem.category;
       this.chosenSubCategoryId = this.shopItem.subCategory;
       this.chosenItemId = this.shopItem.id;
+      this.subscription.push(this.orderItemListService.orderItemList$.subscribe((orderList) => {
+        this.orderList = orderList;
+      }));
+      this.orderList.push({ id: this.shopItem.id, amount: String(this.inputValue) });
+      this.orderItemListService.orderItemList$.next(this.orderList.slice());
     }
     this.deliveryDate();
   }
@@ -57,6 +67,7 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
       this.inputValue = this.maxInputValue;
     }
     this.totalPrice = this.price * this.inputValue;
+    this.updateOrderList();
   }
 
   minus() {
@@ -65,6 +76,16 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
       this.inputValue = 1;
     }
     this.totalPrice = this.price * this.inputValue;
+    this.updateOrderList();
+  }
+
+  updateOrderList() {
+    this.orderList.map((orderItem) => {
+      if (orderItem.id === this.chosenItemId) {
+        orderItem.amount = String(this.inputValue);
+      }
+    });
+    this.orderItemListService.orderItemList$.next(this.orderList.slice());
   }
 
   deliveryDate() {

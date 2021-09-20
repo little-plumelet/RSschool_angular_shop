@@ -1,3 +1,7 @@
+.cart_list-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .cart-table_shop-item {
   grid-area: item;
   text-align: center;
@@ -28,6 +32,11 @@
   border-top: 1px solid var(--primaryGreenColor);
   margin-bottom: 20px;
   padding: 10px 0;
+}
+
+.order-btn {
+  align-self: flex-end;
+  width: 500px;
 }
 
 

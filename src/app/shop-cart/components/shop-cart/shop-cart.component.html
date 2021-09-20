@@ -1,4 +1,4 @@
-<div class="wrapper shop-item-list-wrapper">
+<div class="wrapper shop-item-list-wrapper cart_list-wrapper">
   <h2 *ngIf="(shopItemListInCart$ | async)?.length; else noCart">Корзина</h2>
   <div class="cart-table-header">
     <div class="cart-table_shop-item">Товар</div>
@@ -12,6 +12,13 @@
   [shopItem]="shopItem"
   >
   </app-shop-item-in-cart-card>
+  <button
+    *ngIf="(shopItemListInCart$ | async)?.length"
+    class="login-btn order-btn clear"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/form-order']"
+  >Оформить заказ</button>
 </div>
 <ng-template #noCart>
   <h2 class="wrapper shop-item-list-wrapper">Корзина пуста</h2>

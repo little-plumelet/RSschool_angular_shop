@@ -9,6 +9,7 @@ import { SubcategoryPageComponent } from '../commodities/pages/subcategory-page/
 import { RegistrationFormComponent } from '../auth/components/registration-form/registration-form.component';
 import { FavouritesPageComponent } from '../commodities/pages/favourites-page/favourites-page.component';
 import { ShopCartPageComponent } from '../shop-cart/pages/shop-cart-page/shop-cart-page.component';
+import { OrderFormComponent } from '../shop-cart/components/order-form/order-form.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationFormComponent },
   { path: 'favourite', component: FavouritesPageComponent },
   { path: 'shop-cart', component: ShopCartPageComponent },
+  { path: 'form-order', component: OrderFormComponent },
 ];
 
 @NgModule({
