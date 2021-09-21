@@ -1,5 +1,5 @@
 <div class="wrapper shop-item-list-wrapper"
-  *ngIf="shopItemList$ | async; else noFavourite">
+  *ngIf="(shopItemList$ | async)?.length; else noFavourite">
   <app-shop-item-card *ngFor="let shopItem of shopItemList$ | async"
     [shopItem]="shopItem"
     [inFavourite]="inFavourite">

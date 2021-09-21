@@ -65,6 +65,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       this.toolTipContent = TOOLTIP_CONTENT.phone;
       this.showToolTip$.next(true);
     } else {
+      this.deliveryDate();
       const details: IOrderDetails = {
         name: this.fio,
         address: this.address,
@@ -72,8 +73,8 @@ export class OrderFormComponent implements OnInit, OnDestroy {
         timeToDeliver: this.time,
         comment: this.comment,
       };
-
       this.subscriptions.push(this.httpRequestServer.postOrder(details).subscribe());
+      this.clearInputs();
     }
   }
 
@@ -83,7 +84,38 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   hideToolTipOrder() {
     this.orderFinishService.orderFinish$.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/orders-waiting-list']);
+  }
+
+  deliveryDate() {
+    const date = new Date();
+    const time = date.getHours().toLocaleString();
+    let trimmedDate = '';
+
+    if ((Number(time) >= 20 && Number(time) <= 24) || (Number(time) > Number(this.time.split(':')[0]))) {
+      date.setDate(date.getDate() + 1);
+      trimmedDate = this.trimDate(date);
+      this.time += '  ' + trimmedDate;
+    } else {
+      trimmedDate = this.trimDate(date);
+      this.time += '  ' + trimmedDate;
+    }
+  }
+
+  trimDate(date: Date): string {
+    let trimmedDate = '';
+
+    trimmedDate = date.toLocaleString();
+    trimmedDate = trimmedDate.substring(0, trimmedDate.indexOf(','));
+    return trimmedDate;
+  }
+
+  clearInputs() {
+    this.fio = '';
+    this.phoneNumber = '';
+    this.address = '';
+    this.time = '';
+    this.comment = '';
   }
 
   ngOnDestroy() {

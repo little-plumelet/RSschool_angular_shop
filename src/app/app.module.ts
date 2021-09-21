@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommoditiesModule } from './commodities/commodities.module';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { ShopCartModule } from './shop-cart/shop-cart.module';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ShopCartModule } from './shop-cart/shop-cart.module';
     AuthModule,
     CommoditiesModule,
     ShopCartModule,
+    OrdersModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,

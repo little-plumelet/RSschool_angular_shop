@@ -1,0 +1,33 @@
+<!-- *ngIf="shopItem" -->
+<mat-accordion class="headers-align" multi *ngIf="orderItem">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Заказ № {{ orderItem.id }}
+      </mat-panel-title>
+      <mat-panel-description>
+        Доставка в <span class="shift">{{ orderItem.details.timeToDeliver }}</span>
+      </mat-panel-description>
+      <mat-panel-description>
+          К оплате: <span class="shift mat-panel-description-price">{{ totalPrice | number: '1.2-3'}}</span><span class="shift">бел рублей</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <p *ngFor="let item of shopItemArray" class="order-item-details-container">
+        <span class="order-item__details order-item__name">{{ item.name }}</span>
+        <span class="order-item__details order-item__number">{{ item.numberInOrder }}шт</span>
+        <span
+          class="order-item__details order-item__price"
+        >
+          {{ item.price | number: '1.2-3' }}
+          <span class="order-item__price-sign">бел рублей за 1шт</span>
+        </span>
+      </p>
+      <div class="order-item-button-container">
+        <button class="order-delete" mat-raised-button>Отменить заказ</button>
+        <button class="order-edit"  mat-raised-button>Редактировать заказ</button>
+      </div>
+  </mat-expansion-panel>
+</mat-accordion>

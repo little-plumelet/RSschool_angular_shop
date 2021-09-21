@@ -214,10 +214,13 @@ export class HttpRequestsService {
       }),
       catchError((error) => {
         // временный код - пока есть ошибка с сервером (пробрасывает статус 200 в ошибку)
-        orderList = [];
-        this.orderItemListService.orderItemList$.next(orderList);
-        this.orderFinishService.orderFinish$.next(true);
-
+        if (Number(error.status) === 200) {
+          orderList = [];
+          this.orderItemListService.orderItemList$.next(orderList);
+          this.orderFinishService.orderFinish$.next(true);
+          this.shopItemListOfShopCartService.shopItemListInCart$.next([]);
+          console.log('NOT Error! Order was submitted!', error);
+        }
         if (Number(error.status) === 401) {
           console.log('Error! User token is missing!', error);
         } else {
