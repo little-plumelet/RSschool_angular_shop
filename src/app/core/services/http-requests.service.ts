@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IToken } from 'src/app/auth/models/token';
-import { IUserInfo } from 'src/app/auth/models/user-info';
+import { IOrderData, IUserInfo } from 'src/app/auth/models/user-info';
 import { IUserRegister } from 'src/app/auth/models/user-register';
 import { ShopItemListOfFavouriteService } from 'src/app/commodities/services/shop-item-list-of-favourite.service';
 import { OrdersListService } from 'src/app/orders/services/orders-list.service';
@@ -252,5 +252,29 @@ export class HttpRequestsService {
           return throwError(error);
         }),
       );
+  }
+
+  editOrder(orderData: IOrderData) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const options = {
+      headers: headers,
+    };
+
+    return this.http.put(`${BASE_URL}/users/order`, orderData, options).pipe(
+      map(() => {
+        //orderList = [];
+        this.orderItemListService.orderItemList$.next(orderData.items.slice());
+        this.orderFinishService.orderFinish$.next(true);
+      }),
+      catchError((error) => {
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!', error);
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return throwError(error);
+      }),
+    );
   }
 }

@@ -1,4 +1,3 @@
-<!-- *ngIf="shopItem" -->
 <mat-accordion class="headers-align" multi *ngIf="orderItem">
   <mat-expansion-panel
     (opened)="panelOpenState = true"
@@ -33,7 +32,13 @@
         >
           Отменить заказ
         </button>
-        <button class="order-edit"  mat-raised-button>Редактировать заказ</button>
+        <button
+          class="order-edit"
+          mat-raised-button
+          (click)="editOrder()"
+        >
+          Редактировать заказ
+        </button>
       </div>
   </mat-expansion-panel>
 </mat-accordion>

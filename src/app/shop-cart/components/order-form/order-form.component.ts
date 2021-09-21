@@ -2,19 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { ADDRESS_MAX, FIO_MAX, INPUT_MIN, TOOLTIP_CONTENT } from 'src/app/shared/constants/constants';
 import { IOrderDetails } from '../../models/order-details';
 import { OrderFinishService } from '../../services/order-finish.service';
 
-const TOOLTIP_CONTENT = {
-  empty: 'заполните все поля',
-  fio: 'поле ФИО должно быть не менее 3 знаков и не более 50',
-  address: 'поле Адрес должно быть не менее 3 знаков и не более 200',
-  phone: 'поле Номер телефона должно начинаться со знака "+" и содержать только цифры',
-  time: 'поле Время ...',
-};
-const INPUT_MIN = 3;
-const FIO_MAX = 50;
-const ADDRESS_MAX = 250;
+
 
 @Component({
   selector: 'app-order-form',

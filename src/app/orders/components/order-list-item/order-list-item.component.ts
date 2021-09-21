@@ -1,25 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, OnDestroy } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IOrderData } from 'src/app/auth/models/user-info';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
-import { IShopItem } from 'src/app/shared/models/shop-item';
+import { IShopItemInOrder } from '../../models/shop-item-in-order';
 import { OrdersListService } from '../../services/orders-list.service';
 
-interface IShopItemInOrder extends IShopItem {
-  id: string;
-  name: string;
-  imageUrls:	[string];
-  rating:	number;
-  availableAmount:	number;
-  price:	number;
-  description:	string;
-  isInCart:	boolean;
-  isFavorite:	boolean;
-  category: string;
-  subCategory: string;
-  numberInOrder?: string;
-}
 @Component({
   selector: 'app-order-list-item',
   templateUrl: './order-list-item.component.html',
@@ -42,6 +29,7 @@ export class OrderListItemComponent implements OnInit, OnDestroy {
   constructor(
     private httpRequestService: HttpRequestsService,
     private ordersListService: OrdersListService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +48,10 @@ export class OrderListItemComponent implements OnInit, OnDestroy {
   deleteOrder() {
     if (this.orderItem)
       this.subscription.push(this.httpRequestService.deleteOrder(this.orderItem?.id).subscribe());
+  }
+
+  editOrder() {
+    this.router.navigate(['/order-edit', this.orderItem?.id]);
   }
 
   ngOnDestroy() {

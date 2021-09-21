@@ -104,3 +104,14 @@ export const ICONS_OF_CATEGORIES = [
 
   },
 ];
+
+export const TOOLTIP_CONTENT = {
+  empty: 'заполните все поля',
+  fio: 'поле ФИО должно быть не менее 3 знаков и не более 50',
+  address: 'поле Адрес должно быть не менее 3 знаков и не более 200',
+  phone: 'поле Номер телефона должно начинаться со знака "+" и содержать только цифры',
+  time: 'поле Время ...',
+};
+export const INPUT_MIN = 3;
+export const FIO_MAX = 50;
+export const ADDRESS_MAX = 250;

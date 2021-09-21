@@ -1,0 +1,28 @@
+<p>form-edit-shop-items-of-order works!</p>
+<mat-accordion class="headers-align" multi *ngIf="orderItem">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Товары в заказе
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <app-form-edit-shop-item
+      *ngFor="let item of shopItemArrayInOrder"
+      [shopItem]="item"
+      class="order-item-details-container">
+        <!-- <span class="order-item__details order-item__name">{{ item.name }}</span>
+        <span class="order-item__details order-item__number">{{ item.numberInOrder }}шт</span>
+        <span
+          class="order-item__details order-item__price"
+        >
+          {{ item.price | number: '1.2-3' }}
+          <span class="order-item__price-sign">бел рублей за 1шт</span>
+        </span> -->
+      </app-form-edit-shop-item>
+      <div class="order-item-button-container">
+      </div>
+  </mat-expansion-panel>
+</mat-accordion>

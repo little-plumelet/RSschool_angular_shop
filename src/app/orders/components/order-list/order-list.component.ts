@@ -12,7 +12,7 @@ import { OrdersListService } from '../../services/orders-list.service';
 })
 export class OrderListComponent implements OnInit, OnDestroy {
 
-  ordersList$: Subject<IOrderData[] > = new Subject();
+  ordersList$: Subject<IOrderData[]> = new Subject();
 
   subscriptions: Subscription[] = [];
 
@@ -26,7 +26,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.ordersList$.subscribe());
     this.subscriptions.push(this.ordersListService.ordersList$.subscribe());
     this.subscriptions.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
-      // this.ordersData = userInfo.orders;
       this.ordersListService.ordersList$.next(userInfo.orders);
     }));
   }
