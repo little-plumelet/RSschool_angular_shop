@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { IOrderData } from 'src/app/auth/models/user-info';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
+import { OrdersListService } from '../../services/orders-list.service';
 
 interface IShopItemInOrder extends IShopItem {
   id: string;
@@ -40,6 +41,7 @@ export class OrderListItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private httpRequestService: HttpRequestsService,
+    private ordersListService: OrdersListService,
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +55,11 @@ export class OrderListItemComponent implements OnInit, OnDestroy {
         this.totalPrice += Number(item.amount) * price;
       }));
     });
+  }
+
+  deleteOrder() {
+    if (this.orderItem)
+      this.subscription.push(this.httpRequestService.deleteOrder(this.orderItem?.id).subscribe());
   }
 
   ngOnDestroy() {

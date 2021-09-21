@@ -26,7 +26,13 @@
         </span>
       </p>
       <div class="order-item-button-container">
-        <button class="order-delete" mat-raised-button>Отменить заказ</button>
+        <button
+          class="order-delete"
+          mat-raised-button
+          (click)="deleteOrder()"
+        >
+          Отменить заказ
+        </button>
         <button class="order-edit"  mat-raised-button>Редактировать заказ</button>
       </div>
   </mat-expansion-panel>

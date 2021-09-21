@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { IOrderData, IUserInfo } from 'src/app/auth/models/user-info';
+import { Subject, Subscription } from 'rxjs';
+import { IOrderData } from 'src/app/auth/models/user-info';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { OrdersListService } from '../../services/orders-list.service';
 
 @Component({
   selector: 'app-order-list',
@@ -11,19 +12,22 @@ import { HttpRequestsService } from 'src/app/core/services/http-requests.service
 })
 export class OrderListComponent implements OnInit, OnDestroy {
 
-  ordersList$: Observable<IUserInfo> = new Observable();
-
-  ordersData: IOrderData[] = [];
+  ordersList$: Subject<IOrderData[] > = new Subject();
 
   subscriptions: Subscription[] = [];
 
   constructor(
     private httpRequestService: HttpRequestsService,
+    public ordersListService: OrdersListService,
   ) { }
 
   ngOnInit(): void {
-    this.subscriptions.push((this.ordersList$ = this.httpRequestService.getUserInfo()).subscribe((userInfo) => {
-      this.ordersData = userInfo.orders;
+    this.ordersList$ = this.ordersListService.ordersList$;
+    this.subscriptions.push(this.ordersList$.subscribe());
+    this.subscriptions.push(this.ordersListService.ordersList$.subscribe());
+    this.subscriptions.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+      // this.ordersData = userInfo.orders;
+      this.ordersListService.ordersList$.next(userInfo.orders);
     }));
   }
 

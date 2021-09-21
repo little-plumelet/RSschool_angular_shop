@@ -1,8 +1,8 @@
 <div class="wrapper order-list-wrapper">
   <h2>Список заказов</h2>
-  <ul *ngIf="(ordersList$ | async)?.orders?.length; else noOrder">
+  <ul *ngIf="(ordersList$ | async)?.length; else noOrder">
   <app-order-list-item
-    *ngFor="let orderItem of (ordersList$ | async)?.orders"
+    *ngFor="let orderItem of (ordersList$ | async)"
     [orderItem]="orderItem"
   >
     {{ orderItem.id }}

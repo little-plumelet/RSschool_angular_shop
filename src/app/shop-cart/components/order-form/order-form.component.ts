@@ -56,7 +56,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       this.toolTipContent = TOOLTIP_CONTENT.empty;
     } else if (this.fio.length < INPUT_MIN || this.fio.length > FIO_MAX) {
       this.toolTipContent = TOOLTIP_CONTENT.fio;
-      console.log(this.toolTipContent);
       this.showToolTip$.next(true);
     } else if (this.address.length < INPUT_MIN || this.address.length > ADDRESS_MAX) {
       this.toolTipContent = TOOLTIP_CONTENT.address;

@@ -6,6 +6,7 @@ import { IToken } from 'src/app/auth/models/token';
 import { IUserInfo } from 'src/app/auth/models/user-info';
 import { IUserRegister } from 'src/app/auth/models/user-register';
 import { ShopItemListOfFavouriteService } from 'src/app/commodities/services/shop-item-list-of-favourite.service';
+import { OrdersListService } from 'src/app/orders/services/orders-list.service';
 import { BASE_URL, HOME_PAGE_GOODS } from 'src/app/shared/constants/constants';
 import { ICategory } from 'src/app/shared/models/category';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -30,6 +31,7 @@ export class HttpRequestsService {
     private shopItemListOfShopCartService: ShopItemListOfShopCartService,
     private orderItemListService: OrderItemListService,
     private orderFinishService: OrderFinishService,
+    private ordersListService: OrdersListService,
   ) {}
 
   getCategories() {
@@ -213,14 +215,6 @@ export class HttpRequestsService {
         this.orderFinishService.orderFinish$.next(true);
       }),
       catchError((error) => {
-        // временный код - пока есть ошибка с сервером (пробрасывает статус 200 в ошибку)
-        if (Number(error.status) === 200) {
-          orderList = [];
-          this.orderItemListService.orderItemList$.next(orderList);
-          this.orderFinishService.orderFinish$.next(true);
-          this.shopItemListOfShopCartService.shopItemListInCart$.next([]);
-          console.log('NOT Error! Order was submitted!', error);
-        }
         if (Number(error.status) === 401) {
           console.log('Error! User token is missing!', error);
         } else {
@@ -229,5 +223,34 @@ export class HttpRequestsService {
         return throwError(error);
       }),
     );
+  }
+
+  deleteOrder(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const httpParams = new HttpParams()
+      .set('id', id);
+    const options = {
+      headers: headers,
+      params: httpParams,
+    };
+    console.log(' this.ordersListService.ordersList$.value',  this.ordersListService.ordersList$.value);
+    return this.http.delete(`${BASE_URL}/users/order/`, options)
+      .pipe(
+        map(() => {
+          const newOrderItemList = this.ordersListService.ordersList$.value.filter(
+            (orderItem) => orderItem.id != id,
+          );
+          this.ordersListService.ordersList$.next(newOrderItemList);
+        }),
+        catchError((error) => {
+          if (Number(error.status) === 401) {
+            console.log('Error! User token is missing!', error);
+          } else {
+            console.log('Error is caught!', error);
+          }
+          return throwError(error);
+        }),
+      );
   }
 }
