@@ -72,7 +72,7 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
     this.totalPrice = this.price * this.inputValue;
     this.orderList.forEach((item) => {
       if (item.id === this.chosenItemId) {
-        item.amount = String(Number(item.amount) + 1);
+        item.amount = String(this.inputValue);
       }
     });
     this.orderItemListService.orderItemList$.next(this.orderList.slice());
@@ -86,7 +86,7 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
     this.totalPrice = this.price * this.inputValue;
     this.orderList.forEach((item) => {
       if (item.id === this.chosenItemId) {
-        item.amount = String(Number(item.amount) - 1);
+        item.amount = String(this.inputValue);
       }
     });
     this.orderItemListService.orderItemList$.next(this.orderList.slice());
