@@ -4,10 +4,10 @@
       <mat-icon color="accent" class="star__icon">star_rate</mat-icon>
     </div>
   </div>
-  <img mat-card-image [src]="shopItem.imageUrls[0]" alt="{{ shopItem.name }}">
+  <img mat-card-image [src]="shopItem.imageUrls[0]">
   <mat-card-content class="shop-item-card__content">
     <mat-card-title class="shop-item-card__title">
-      <a [routerLink]="['/catalog', chosenCategoryId, chosenSubCategoryId, chosenItemId]">{{ shopItem.name }}</a>
+      <a class="truncate" [routerLink]="['/catalog', chosenCategoryId, chosenSubCategoryId, chosenItemId]">{{ shopItem.name }}</a>
     </mat-card-title>
     <p class="shop-item-card__availability" *ngIf="shopItem.availableAmount; else notAvailable">
       <mat-icon appShopItemAvaliabilityStyle avaliableNumber="{{ shopItem.availableAmount }}" class="availability__icon">done</mat-icon>

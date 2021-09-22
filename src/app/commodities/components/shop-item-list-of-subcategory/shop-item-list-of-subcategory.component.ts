@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { AppState } from 'src/app/redux/app-state.model';
-import { sortingOrder } from 'src/app/shared/constants/constants';
+import { ITEMS_PER_PAGE, sortingOrder } from 'src/app/shared/constants/constants';
 import { IShopItem } from 'src/app/shared/models/shop-item';
 
 const UNSORTED = 'swap_vert';
@@ -41,6 +41,8 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
 
   iconPopularityContent = UNSORTED;
 
+  count = ITEMS_PER_PAGE;
+
   constructor(
     private route: ActivatedRoute,
     private httpRequestService: HttpRequestsService,
@@ -48,12 +50,18 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.count = ITEMS_PER_PAGE;
     this.chosenCategoryName$ = this.store.select((state) => state.categoriesState.chosenCategoryName);
+    this.getItems();
+
+  }
+
+  getItems() {
     this.subscription.push(this.route.params.subscribe((params: Params) => {
       this.chosenCategoryId = params.categoryId;
       this.chosenSubCategoryId = params.subcategoryId;
       this.subscription.push(this.httpRequestService.getGoodsOfSubcategory(
-        params.categoryId, params.subcategoryId,
+        params.categoryId, params.subcategoryId, this.count,
       ).subscribe((shopItems) => {
         this.shopItemList$.next(shopItems);
         this.shopItemList = shopItems;
@@ -63,9 +71,7 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
           (subcategory) => subcategory.id === params.subcategoryId,
         )[0]?.name;
       });
-
     }));
-
   }
 
   sortByPrice(sortingDirection: string) {
@@ -138,6 +144,16 @@ export class ShopItemListOfSubcategoryComponent implements OnInit, OnDestroy {
 
     if (key === 'iconPriceContent') this.iconPopularityContent = UNSORTED;
     else this.iconPriceContent = UNSORTED;
+  }
+
+  moreItems() {
+    this.count = String(Number(this.count) + Number(ITEMS_PER_PAGE));
+    this.subscription.push(this.route.params.subscribe((params: Params) => {
+      if (this.chosenCategoryId !== params.categoryId || this.chosenSubCategoryId !== params.subcategoryId) {
+        this.count = ITEMS_PER_PAGE;
+      }
+    }));
+    this.getItems();
   }
 
   ngOnDestroy() {

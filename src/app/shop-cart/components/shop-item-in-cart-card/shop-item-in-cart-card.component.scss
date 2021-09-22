@@ -96,3 +96,28 @@
   'item item description description number delivery price';
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 1000px) {
+  .cart-table-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    border-bottom: 1px solid var(--primaryGreenColor);
+  }
+  .description-text {
+    margin-bottom: 20px;
+  }
+
+  .cart-table_shop-item-number,
+  .cart-table_shop-item-delivery,
+  .cart-table_shop-item-price {
+    align-self: flex-start;
+    margin-bottom: 5px;
+  }
+
+  .cart-table_shop-item-delivery,
+  .cart-table_shop-item-price {
+   padding: 0 20px;
+  }
+}

@@ -7,7 +7,9 @@ mat-panel-description {
   justify-content: flex-start;
 }
 
-
+.order-details {
+  display: block;
+}
 .order-item__name {
   grid-area: name;
 }
@@ -20,7 +22,7 @@ mat-panel-description {
 
 .order-item-details-container {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 3fr 2fr 1fr;
   grid-template-areas:
   'name number price';
   border-top: 1px solid var(--primaryGreenColor);
@@ -53,4 +55,41 @@ mat-panel-description {
   background-color: var(--primaryGreenColor);
 }
 
+@media screen and (max-width: 1000px) {
+  mat-panel-title {
+    font-size: 9px;
+    max-width: 300px;
+    display: block;
+  }
+  mat-panel-description {
+    font-size: 9px;
+    max-width: 300px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .order-id {
+    font-size: 12px;
+  }
+  .order-item-details-container {
+    display: grid;
+    grid-template-columns: 2.5fr 1.8fr 1.2fr;
+  }
+  .mat-panel-description-price-intro {
+    display: none;
+  }
+  .mat-panel-description-price {
+    font-size: 11px;
+  }
 
+  .rder-item-details-container {
+    font-size: 10px;
+  }
+
+  .order-item__details{
+    text-align: start;
+    padding-left: 0;
+  }
+  .order-item__price-sign {
+    padding-left: 0;
+  }
+}

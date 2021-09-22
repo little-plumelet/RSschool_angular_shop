@@ -22,12 +22,14 @@ export class OrderListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.ordersList$ = this.ordersListService.ordersList$;
-    this.subscriptions.push(this.ordersList$.subscribe());
-    this.subscriptions.push(this.ordersListService.ordersList$.subscribe());
-    this.subscriptions.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
-      this.ordersListService.ordersList$.next(userInfo.orders);
-    }));
+    if (localStorage.getItem('token')) {
+      this.ordersList$ = this.ordersListService.ordersList$;
+      this.subscriptions.push(this.ordersList$.subscribe());
+      this.subscriptions.push(this.ordersListService.ordersList$.subscribe());
+      this.subscriptions.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+        this.ordersListService.ordersList$.next(userInfo.orders);
+      }));
+    }
   }
 
   ngOnDestroy() {

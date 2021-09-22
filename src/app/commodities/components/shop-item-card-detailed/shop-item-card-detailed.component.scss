@@ -1,6 +1,7 @@
 
 .detailed-shop-item-card {
   background-color: white;
+  margin-bottom: 20px;
 
   &__content {
     display: flex;
@@ -213,11 +214,7 @@
       justify-content: center;
       align-items: center;
     }
-    // .mySwiper2__slide {
-    //   height: fit-content;
-    //   display: flex;
-    // }
-    }
+  }
 
   .mySwiper .swiper-slide-thumb-active {
     opacity: 1;

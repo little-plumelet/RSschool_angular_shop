@@ -6,7 +6,7 @@ import {
   OnDestroy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -38,10 +38,13 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
     private shopCartListservice: ShopItemListOfShopCartService,
     private httpRequestService: HttpRequestsService,
     private cdr: ChangeDetectorRef,
+    private router: Router,
   ) {}
 
   ngOnInit() {
-    this.subscription.push(this.httpRequestService.getUserInfo().subscribe());
+
+    //this.subscription.push(this.httpRequestService.getUserInfo().subscribe());
+
     this.subscription.push(this.route.params.subscribe((params: Params) => {
       this.chosenCategoryId = params.categoryId;
       this.chosenSubCategoryId = params.subcategoryId;
@@ -49,26 +52,32 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
         this.chosenItemId = this.shopItem.id;
       }
     }));
-    this.subscription.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
-      userInfo.favorites.forEach((favouriteItem) => {
-        if (favouriteItem === this.shopItem?.id) {
-          this.inFavourite = true;
-          this.cdr.detectChanges();
-        }
-      });
-      userInfo.cart.forEach((itemInCart) => {
-        if (itemInCart === this.shopItem?.id) {
-          this.inCart = true;
-          this.cdr.detectChanges();
-        }
-      });
-    }));
+    if (localStorage.getItem('token')) {
+      this.subscription.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+        userInfo.favorites.forEach((favouriteItem) => {
+          if (favouriteItem === this.shopItem?.id) {
+            this.inFavourite = true;
+            this.cdr.detectChanges();
+          }
+        });
+        userInfo.cart.forEach((itemInCart) => {
+          if (itemInCart === this.shopItem?.id) {
+            this.inCart = true;
+            this.cdr.detectChanges();
+          }
+        });
+      }));
+    }
   }
 
   addToFavourite(id: string) {
-    this.httpRequestService.addToFavouritList(id).subscribe();
-    this.inFavourite = true;
-    this.cdr.detectChanges();
+    if (localStorage.getItem('token')) {
+      this.httpRequestService.addToFavouritList(id).subscribe();
+      this.inFavourite = true;
+      this.cdr.detectChanges();
+    } else {
+      this.router.navigate(['/register-prompt']);
+    }
   }
 
   removeFromFavourite(id: string) {
@@ -78,11 +87,15 @@ export class ShopItemCardComponent implements OnInit, OnDestroy {
   }
 
   addToCart(id: string) {
-    this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
-    if (this.shopItem) {
-      this.shopItem.isInCart = true;
-      this.inCart = true;
-      this.cdr.detectChanges();
+    if (localStorage.getItem('token')) {
+      this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
+      if (this.shopItem) {
+        this.shopItem.isInCart = true;
+        this.inCart = true;
+        this.cdr.detectChanges();
+      }
+    } else {
+      this.router.navigate(['/register-prompt']);
     }
   }
 

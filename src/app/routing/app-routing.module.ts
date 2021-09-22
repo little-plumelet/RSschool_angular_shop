@@ -12,6 +12,7 @@ import { ShopCartPageComponent } from '../shop-cart/pages/shop-cart-page/shop-ca
 import { OrderFormComponent } from '../shop-cart/components/order-form/order-form.component';
 import { OrderWaitingPageComponent } from '../orders/pages/order-waiting-page/order-waiting-page.component';
 import { OrderEditPageComponent } from '../orders/pages/order-edit-page/order-edit-page.component';
+import { PleaseRegisterPageComponent } from '../shared/components/please-register-page/please-register-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'form-order', component: OrderFormComponent },
   { path: 'orders-waiting-list', component: OrderWaitingPageComponent },
   { path: 'order-edit/:orderId', component: OrderEditPageComponent },
+  { path: 'register-prompt', component: PleaseRegisterPageComponent },
 ];
 
 @NgModule({

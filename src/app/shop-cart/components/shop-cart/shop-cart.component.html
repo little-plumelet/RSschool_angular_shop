@@ -12,6 +12,10 @@
   [shopItem]="shopItem"
   >
   </app-shop-item-in-cart-card>
+  <div *ngIf="totalPrice" class="cart-totla-price">
+    <span>Общая сумма заказа: </span>
+    <span class="cart-totla-price__price">{{ totalPrice | number: '1.2-3'}} бел рублей</span>
+  </div>
   <button
     *ngIf="(shopItemListInCart$ | async)?.length"
     class="login-btn order-btn clear"

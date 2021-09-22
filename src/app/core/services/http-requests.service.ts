@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { EMPTY, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IToken } from 'src/app/auth/models/token';
 import { IOrderData, IUserInfo } from 'src/app/auth/models/user-info';
@@ -42,8 +42,8 @@ export class HttpRequestsService {
     return this.http.get<IShopItem[]>(`${BASE_URL}/goods/search?text=${searchQuery}`);
   }
 
-  getGoodsOfSubcategory(categoryId: string, subCategoryId: string) {
-    const result = this.http.get<IShopItem[]>(`${BASE_URL}/goods/category/${categoryId}/${subCategoryId}`);
+  getGoodsOfSubcategory(categoryId: string, subCategoryId: string, count: string) {
+    const result = this.http.get<IShopItem[]>(`${BASE_URL}/goods/category/${categoryId}/${subCategoryId}?start=0&count=${count}` );
     return result;
   }
 
@@ -67,7 +67,7 @@ export class HttpRequestsService {
 
   registerUser(user: IUserRegister) {
     const httpParams = new HttpParams()
-      .set(' firstName', user.firstName)
+      .set('firstName', user.firstName)
       .set('lastName', user.lastName)
       .set('login', user.login)
       .set('password', user.password);
@@ -79,7 +79,17 @@ export class HttpRequestsService {
       login,
       password,
     };
-    return this.http.post<IToken>(`${BASE_URL}/users/login`, body);
+    return this.http.post<IToken>(`${BASE_URL}/users/login`, body).pipe(
+      map((token) => token),
+      catchError((error) => {
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!');
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return EMPTY;
+      }),
+    );
   }
 
   getUserInfo() {
@@ -161,7 +171,17 @@ export class HttpRequestsService {
     const body = {
       id: id,
     };
-    return this.http.post(`${BASE_URL}/users/cart/`, body, options);
+    return this.http.post(`${BASE_URL}/users/cart/`, body, options).pipe(
+      map(() => {}),
+      catchError((error) => {
+        if (Number(error.status) === 401) {
+          console.log('Error! User token is missing!', error);
+        } else {
+          console.log('Error is caught!', error);
+        }
+        return throwError(error);
+      }),
+    );
   }
 
   removeFromCart(id: string) {
@@ -200,6 +220,7 @@ export class HttpRequestsService {
     this.orderItemListService.orderItemList$.subscribe((orderItemList) => {
       orderList = orderItemList;
     });
+    this.shopItemListOfShopCartService.shopItemListInCart$.next([]);
     const body = {
       items: orderList,
       details: orderDetails,

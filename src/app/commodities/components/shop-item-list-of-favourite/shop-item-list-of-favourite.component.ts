@@ -28,16 +28,18 @@ export class ShopItemListOfFavouriteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.shopItemList$ = this.shopItemListOfFavouriteService.shopItemListOfFavourite$;
-    this.httpRequestService.getUserInfo().subscribe((userInfo) => {
-      userInfo.favorites.map((itemId) => {
-        this.shopItem$ = this.httpRequestService.getShopItemById(itemId);
-        this.subscription.push(this.shopItem$.subscribe((shopItem) => {
-          this.shopItemList.push(shopItem);
-          this.shopItemListOfFavouriteService.shopItemListOfFavourite$.next(this.shopItemList);
-        }));
+    if (localStorage.getItem('token')) {
+      this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+        userInfo.favorites.map((itemId) => {
+          this.shopItem$ = this.httpRequestService.getShopItemById(itemId);
+          this.subscription.push(this.shopItem$.subscribe((shopItem) => {
+            this.shopItemList.push(shopItem);
+            this.shopItemListOfFavouriteService.shopItemListOfFavourite$.next(this.shopItemList);
+          }));
+        });
+        this.shopItemList = [];
       });
-      this.shopItemList = [];
-    });
+    }
   }
 
   ngOnDestroy() {

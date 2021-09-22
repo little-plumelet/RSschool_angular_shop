@@ -3,7 +3,7 @@
   [slidesPerView]="1"
   [navigation]="{ prevEl: '.swiper-navigation-prev', nextEl: '.swiper-navigation-next' }"
   [zoom]="true"
-
+  [autoplay]="true"
   [pagination]="{ clickable: true }"
 >
   <ng-template class="swiperSlide" swiperSlide  *ngFor="let slide of shopItemListRandom$ | async; index as i" let-data>

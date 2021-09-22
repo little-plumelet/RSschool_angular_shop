@@ -55,12 +55,16 @@ export class FormEditOrderComponent implements OnInit {
       this.orderId = params.orderId;
       this.subscriptions.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
         this.orderData = userInfo.orders.filter((order) => order.id === params.orderId)[0];
-        this.fio = this.orderData.details.name;
-        this.phoneNumber =  this.orderData.details.phone;
-        this.time = this.orderData.details.timeToDeliver.slice(0, this.orderData.details.timeToDeliver.indexOf(' '));
-        this.address = this.orderData.details.address;
-        if (this.orderData.details.comment) {
-          this.comment = this.orderData.details.comment;
+
+        if (this.orderData) {
+          this.fio = this.orderData.details.name;
+          this.phoneNumber =  this.orderData.details.phone;
+          this.time = this.orderData.details.timeToDeliver.slice(0, this.orderData.details.timeToDeliver.indexOf(' '));
+          this.address = this.orderData.details.address;
+
+          if (this.orderData.details.comment) {
+            this.comment = this.orderData.details.comment;
+          }
         }
         this.cdr.detectChanges();
       }));

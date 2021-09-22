@@ -89,26 +89,33 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
       }));
     }));
 
-    this.subscription.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
-      userInfo.favorites.forEach((favouriteItem) => {
-        if (favouriteItem === this.shopItem?.id) {
-          this.inFavourite = true;
-          this.cdr.detectChanges();
-        }
-      });
-      userInfo.cart.forEach((itemInCart) => {
-        if (itemInCart === this.shopItem?.id) {
-          this.inCart = true;
-          this.cdr.detectChanges();
-        }
-      });
-    }));
+    if (localStorage.getItem('token')) {
+      this.subscription.push(this.httpRequestService.getUserInfo().subscribe((userInfo) => {
+        userInfo.favorites.forEach((favouriteItem) => {
+          if (favouriteItem === this.shopItem?.id) {
+            this.inFavourite = true;
+            this.cdr.detectChanges();
+          }
+        });
+        userInfo.cart.forEach((itemInCart) => {
+          if (itemInCart === this.shopItem?.id) {
+            this.inCart = true;
+            this.cdr.detectChanges();
+          }
+        });
+      }));
+    }
   }
 
   addToFavourite(id: string) {
-    this.subscription.push(this.httpRequestService.addToFavouritList(id).subscribe());
-    this.inFavourite = true;
-    this.cdr.detectChanges();
+    if (localStorage.getItem('token')) {
+      this.subscription.push(this.httpRequestService.addToFavouritList(id).subscribe());
+      this.inFavourite = true;
+      this.cdr.detectChanges();
+    } else {
+      this.router.navigate(['/register-prompt']);
+    }
+
   }
 
   removeFromFavourite(id: string) {
@@ -118,9 +125,13 @@ export class ShopItemCardDetailedComponent implements OnInit, OnDestroy {
   }
 
   addToCart(id: string) {
-    this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
-    this.inCart = true;
-    this.cdr.detectChanges();
+    if (localStorage.getItem('token')) {
+      this.subscription.push(this.httpRequestService.addToCart(id).subscribe());
+      this.inCart = true;
+      this.cdr.detectChanges();
+    } else {
+      this.router.navigate(['/register-prompt']);
+    }
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { IShopItem } from 'src/app/shared/models/shop-item';
@@ -18,6 +18,9 @@ const DELIVERY = {
 })
 export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
   @Input() shopItem?: IShopItem;
+
+  @Output() newPrice = new EventEmitter();
+
 
   subscription: Subscription[] = [];
 
@@ -67,7 +70,12 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
       this.inputValue = this.maxInputValue;
     }
     this.totalPrice = this.price * this.inputValue;
-    this.updateOrderList();
+    this.orderList.forEach((item) => {
+      if (item.id === this.chosenItemId) {
+        item.amount = String(Number(item.amount) + 1);
+      }
+    });
+    this.orderItemListService.orderItemList$.next(this.orderList.slice());
   }
 
   minus() {
@@ -76,7 +84,12 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
       this.inputValue = 1;
     }
     this.totalPrice = this.price * this.inputValue;
-    this.updateOrderList();
+    this.orderList.forEach((item) => {
+      if (item.id === this.chosenItemId) {
+        item.amount = String(Number(item.amount) - 1);
+      }
+    });
+    this.orderItemListService.orderItemList$.next(this.orderList.slice());
   }
 
   updateOrderList() {
@@ -100,6 +113,8 @@ export class ShopItemInCartCardComponent implements OnInit, OnDestroy {
 
   removeFromCart(id: string) {
     this.subscription.push(this.httpRequestService.removeFromCart(id).subscribe());
+    this.orderList = this.orderList.filter((orderItem) => orderItem.id !== this.chosenItemId);
+    this.orderItemListService.orderItemList$.next(this.orderList.slice());
   }
 
   ngOnDestroy() {

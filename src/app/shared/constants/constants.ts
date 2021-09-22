@@ -115,3 +115,5 @@ export const TOOLTIP_CONTENT = {
 export const INPUT_MIN = 3;
 export const FIO_MAX = 50;
 export const ADDRESS_MAX = 250;
+
+export const ITEMS_PER_PAGE = '10';

@@ -18,3 +18,14 @@ app-shop-item-list {
   top: 55px;
   width: 100%;
 }
+
+@media screen and (max-width: 1000px) {
+	.header-nav-main {
+    flex-direction: column;
+
+    .mat-button,
+    .user-profile-block-container {
+      width: 100%;
+    }
+  }
+}

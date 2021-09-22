@@ -5,13 +5,15 @@
   >
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Заказ № {{ orderItem.id }}
+        <span>Заказ № </span><span class="order-id">{{ orderItem.id }}</span>
       </mat-panel-title>
-      <mat-panel-description>
-        Доставка в <span class="shift">{{ orderItem.details.timeToDeliver }}</span>
+      <mat-panel-description class="order-details">
+        Доставка в <span class="shift">{{ orderItem.details.timeToDeliver }},</span>
+        <span class="shift">по адресу: {{ orderItem.details.address }},</span>
+        <span class="shift">на имя {{ orderItem.details.name }}</span>
       </mat-panel-description>
       <mat-panel-description>
-          К оплате: <span class="shift mat-panel-description-price">{{ totalPrice | number: '1.2-3'}}</span><span class="shift">бел рублей</span>
+        <span class="shift mat-panel-description-price-intro">К оплате:</span><span class="shift mat-panel-description-price">{{ totalPrice | number: '1.2-3'}}</span><span class="shift">бел рублей</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
       <p *ngFor="let item of shopItemArray" class="order-item-details-container">

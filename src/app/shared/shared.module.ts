@@ -16,6 +16,7 @@ import { SearchGoodsInputComponent } from './components/header/search-goods-inpu
 import { ShopItemListComponent } from './components/shop-item-list/shop-item-list.component';
 import { RouterModule } from '@angular/router';
 import { ShopItemAvaliabilityStyleDirective } from './directives/shop-item-avaliability-style.directive';
+import { PleaseRegisterPageComponent } from './components/please-register-page/please-register-page.component';
 
 
 
@@ -29,6 +30,7 @@ import { ShopItemAvaliabilityStyleDirective } from './directives/shop-item-avali
     SearchGoodsInputComponent,
     ShopItemListComponent,
     ShopItemAvaliabilityStyleDirective,
+    PleaseRegisterPageComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { ShopItemAvaliabilityStyleDirective } from './directives/shop-item-avali
     FooterComponent,
     ShopItemListComponent,
     ShopItemAvaliabilityStyleDirective,
+    PleaseRegisterPageComponent,
   ],
 })
 export class SharedModule { }

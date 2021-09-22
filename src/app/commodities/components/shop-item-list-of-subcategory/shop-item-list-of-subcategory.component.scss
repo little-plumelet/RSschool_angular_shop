@@ -1,4 +1,5 @@
 .shop-item-list-wrapper {
+  width: fit-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,5 +40,24 @@
 
   &__icon {
     margin-right: 20px;
+  }
+}
+
+.more-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--primaryGreenColor);
+  span {
+    text-align: center;
+    font-weight: normal;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .shop-item-list__title-block {
+    display: flex;
+    flex-direction: column;
   }
 }

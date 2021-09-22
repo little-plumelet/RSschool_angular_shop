@@ -24,3 +24,15 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .header-nav-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &_item {
+      margin-bottom: 10px;
+    }
+  }
+}
