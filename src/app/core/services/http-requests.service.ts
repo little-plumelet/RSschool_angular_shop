@@ -284,7 +284,6 @@ export class HttpRequestsService {
 
     return this.http.put(`${BASE_URL}/users/order`, orderData, options).pipe(
       map(() => {
-        //orderList = [];
         this.orderItemListService.orderItemList$.next(orderData.items.slice());
         this.orderFinishService.orderFinish$.next(true);
       }),
