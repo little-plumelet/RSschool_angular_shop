@@ -1,0 +1,29 @@
+<div class="wrapper shop-item-list-wrapper cart_list-wrapper">
+  <h2 *ngIf="(shopItemListInCart$ | async)?.length; else noCart">Корзина</h2>
+  <div class="cart-table-header">
+    <div class="cart-table_shop-item">Товар</div>
+    <div class="cart-table_shop-item-description">Описание</div>
+    <div class="cart-table_shop-item-number">Количество</div>
+    <div class="cart-table_shop-item-delivery">Доставка</div>
+    <div class="cart-table_shop-item-price">Цена (бел. рубли)</div>
+  </div>
+  <app-shop-item-in-cart-card
+  *ngFor="let shopItem of shopItemListInCart$ | async"
+  [shopItem]="shopItem"
+  >
+  </app-shop-item-in-cart-card>
+  <div *ngIf="totalPrice" class="cart-totla-price">
+    <span>Общая сумма заказа: </span>
+    <span class="cart-totla-price__price">{{ totalPrice | number: '1.2-3'}} бел рублей</span>
+  </div>
+  <button
+    *ngIf="(shopItemListInCart$ | async)?.length"
+    class="login-btn order-btn clear"
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/form-order']"
+  >Оформить заказ</button>
+</div>
+<ng-template #noCart>
+  <h2 class="wrapper shop-item-list-wrapper">Корзина пуста</h2>
+</ng-template>

@@ -1,0 +1,65 @@
+
+.edit-form__shop-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-areas:
+  'name number price btn_number';
+
+  .order-item__name {
+    grid-area: name;
+  }
+  .order-item__number {
+    grid-area: number;
+  }
+  .order-item__price {
+    grid-area: price;
+  }
+  .cart-table_shop-item-number {
+    grid-area: btn_number;
+  }
+}
+
+.cart-table_shop-item-number {
+  grid-area: number;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+
+  input {
+    width: 40%;
+    height: 30px;
+    outline: none;
+    appearance: none;
+    padding-left: 10px;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input {
+    border: 1px solid var(--primaryGreenColor);
+  }
+  .minus,
+  .plus {
+    width: 20%;
+    height: 30px;
+    background-color: var(--deepGray);
+    box-shadow: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    border: 1px solid var(--primaryGreenColor);
+  }
+  .minus {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .plus {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+}
+
+

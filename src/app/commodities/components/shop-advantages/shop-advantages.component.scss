@@ -1,0 +1,46 @@
+
+.advantages {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px 0;
+  border-bottom: 2px dotted var(--primaryGreenColor);
+  margin-bottom: 20px;
+}
+.advantages-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 20px;
+  width: 50%;
+
+  &-quality,
+  &-delivery,
+  &-service,
+  &-price,
+  &-profit,
+  &-kredit {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .content {
+      padding-left: 30px;
+
+      &__title {
+        font-size: 14px;
+      }
+      &__text {
+        font-size: 12px;
+        color: var(--deepGray);
+      }
+    }
+
+    mat-icon {
+      font-size: 40px;
+      color: var(--primaryGreenColor);
+      align-self: center;
+    }
+  }
+}

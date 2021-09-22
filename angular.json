@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -99,13 +100,28 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.component.html",
+              "src/**/**/*.ts",
+              "src/**/**/*.component.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-shop"
+  "defaultProject": "angular-shop",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

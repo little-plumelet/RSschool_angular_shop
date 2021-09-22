@@ -1,0 +1,80 @@
+<div
+  *ngIf="userAuthToggleService.showHideProfileBlock$ | async"
+  class="cover"
+  (click)="userProfileBlockToggle()"
+>
+  <div class="user-profile-container logged">
+    <p class="logged-title">Аккаунт</p>
+    <p class="logged-title">{{ login$ | async }}</p>
+    <ul class="user-profile-nav logged-nav">
+      <li class="nav-item user-profile-shopping_cart">
+        <a [routerLink]="['/shop-cart']">
+          <mat-icon class="nav-item-icon">shopping_cart</mat-icon>
+          Корзина
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/favourite']" class="">
+          <mat-icon class="nav-item-icon">favorite</mat-icon>
+          Избранные товары
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="#" class="">
+          <mat-icon class="nav-item-icon">visibility</mat-icon>
+          Просмотренные
+        </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a href="#" class="">
+          <mat-icon class="nav-item-icon">shuffle</mat-icon>
+          Списки сравнения
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a [routerLink]="['/orders-waiting-list']" class="">
+          <mat-icon class="nav-item-icon">timer</mat-icon>
+          Лист ожидания
+        </a>
+      </li>
+    </ul>
+
+    <ul class="user-profile-nav logged-nav">
+      <!-- <li class="nav-item user-profile-shopping_cart">
+        <a href="#">
+          <mat-icon class="nav-item-icon">shopping_cart</mat-icon>
+          Бонусный счет
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="">
+          <mat-icon class="nav-item-icon">favorite</mat-icon>
+          Личные данные
+        </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a href="#" class="">
+          <mat-icon class="nav-item-icon">visibility</mat-icon>
+          История покупок
+        </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a href="#" class="">
+          <mat-icon class="nav-item-icon">shuffle</mat-icon>
+          Отзывы и вопросы
+        </a>
+      </li> -->
+    </ul>
+
+    <button
+    mat-icon-button
+    class="logout"
+    (click)="logOut()"
+    (click)="userProfileBlockToggle()"
+    >
+      <mat-icon class="logout-item-icon">logout</mat-icon>
+      Выход
+    </button>
+  </div>
+</div>
+

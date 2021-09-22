@@ -1,0 +1,60 @@
+<div
+*ngIf="showHideLoginForm$ | async"
+class="cover"
+(click)="userLoginFormToggle($event)">
+  <form class="form-login">
+    <div class="form-login-header">
+      <span class="form-login-title">ВХОД</span>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="userLoginFormToggle($event)"
+        >
+          <mat-icon class="clear">clear</mat-icon>
+      </button>
+    </div>
+    <label class="form-login-label" for="login">Логин:</label>
+    <input
+      matInput
+      id="login"
+      name="login"
+      class="login-input"
+      type="text"
+      required
+      [(ngModel)]="login"
+    >
+    <label class="form-login-label" for="password">Пароль:</label>
+    <input
+      matInput
+      id="password"
+      name="password"
+      class="password-input"
+      type="password"
+      required
+      [(ngModel)]="password"
+    >
+    <button
+      class="login-btn clear"
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      (click)="userLoginFormToggle($event)"
+    >
+      Войти
+  </button>
+  <!-- <a
+    href="#"
+    class="clear"
+    (click)="userLoginFormToggle($event)"
+  >
+    Не помню пароль
+  </a> -->
+  <a
+    [routerLink]="['/registration']"
+    class="registration-link clear"
+    (click)="userLoginFormToggle($event)"
+  >
+    Регистрация
+  </a>
+  </form>
+</div>
